@@ -1,6 +1,5 @@
 ---
-title: "Critical Loads Summary for `r params$unit`"
-# title: "\vspace{-1.5cm}{Critical Loads Summary \break for `r params$unit`}"
+title: \vspace{-1.5cm}{Critical Loads Summary \break for `r params$unit`}
 header-includes:
 - \usepackage{hyperref} \hypersetup{pdfstartview={XYZ null null 1.00}, colorlinks
   = true, linkcolor = red, urlcolor = red}
@@ -9,15 +8,16 @@ header-includes:
 - \usepackage{wrapfig}
 - \usepackage{booktabs}
 - \usepackage{longtable}
+- \usepackage{tabto}
 params:
   unit: 'Bridger-Teton National Forest'
 output:
-  # pdf_document: 
-  #   toc: yes
-  #   number_sections: yes
-  #   keep_tex: yes
-  html_document:
-    df_print: paged
+  pdf_document:
+    toc: yes
+    number_sections: yes
+    keep_tex: no
+  # html_document:
+  #   df_print: paged
 toccolor: black
 ---
 
@@ -104,20 +104,20 @@ options(knitr.kable.NA = '')
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
-
-
-## Motivation
+# Motivation
 
 A critical load (CL) is the atmospheric deposition level expected to result in harmful ecosystem changes.  Exceedance is the degree to which locally observed deposition goes beyond an established CL.  
 
 <!-- See **[critical loads we used](#critical-loads-we-used)**. -->
 
-### Estimated deposition range for `r params$unit`
+# Summary
+
+## Estimated deposition range for `r params$unit`
 
 Minimum total N deposition: `zzz` kg ha^-1^ y^-1^  
 Maximum total N deposition: `zzz` kg ha^-1^ y^-1^  
 
-### Critical loads short summary
+## Short summary of critical loads
 
 Alpine minimum: \tab  `zzz`  
 Alpine maximum: \tab `zzz`  
@@ -139,7 +139,7 @@ Aquatic minimum: \tab `zzz`
 Aquatic maximum: \tab `zzz`  
 
 
-### Extended summary
+## Extended summary of critical loads
 
 ```{r critical_loads_tab_02}
 tab <- data.frame(Metric = c('Species richness',
@@ -171,23 +171,25 @@ knitr::kable(tab_02,
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
-### Deposition from TDep
+# Deposition from TDep
 
-**Citation:** \tab Schwede and Lear (2014)  
+**Citation:** Schwede and Lear (2014)  
 
-**Description:** Deposition of N-containing compounds was modeled with the National Atmospheric Deposition Program Total Deposition Model (TDep).  Total N incorporates both wet and dry deposition of oxidized ($NO_{x}$, $HNO_{3}$) and reduced N species ($NH_{x}$). To smooth year-to-year variation, we report mean annual deposition for the three-year period 2015-2017.  
+**Description:** Deposition of N-containing compounds was modeled with the National Atmospheric Deposition Program Total Deposition Model (TDep).  Total N incorporates both wet and dry deposition of oxidized (NO~x~, HNO~3~) and reduced N species (NH~x~). To smooth year-to-year variation, we report mean annual deposition for the three-year period 2015-2017.  
 
 **Cell size:** 4134 m  
 
 **Most recent data:** 2017-2019  
 
-**Uncertainty:** A weighted deposition uncertainty metric (WDUM) helps scientists and decision-makers assess CL exceedances (Walker et al. 2019). The WDUM applied to National Atmospheric Deposition Program (NADP) Total Deposition (TDep) estimates shows greater uncertainty where dry deposition makes a larger contribution to the deposition budget, particularly ammonia ($NH_{3}$) in agricultural areas and oxidized nitrogen ($NO_{x}$) in urban areas.  Organic N deposition is an important source of uncertainty over much of the US.  The WDUM can help assess spatial patterns of deposition uncertainty and inform CL assessments at the local scale.  
+**Uncertainty:** A weighted deposition uncertainty metric (WDUM) helps scientists and decision-makers assess CL exceedances (Walker et al. 2019). The WDUM applied to National Atmospheric Deposition Program (NADP) Total Deposition (TDep) estimates shows greater uncertainty where dry deposition makes a larger contribution to the deposition budget, particularly ammonia (NH~3~) in agricultural areas and oxidized nitrogen (NO~x~) in urban areas.  Organic N deposition is an important source of uncertainty over much of the US.  The WDUM can help assess spatial patterns of deposition uncertainty and inform CL assessments at the local scale.  
 
 | Type | Min | Med | Max |
-| ---- | ---- | ---- | ----
+| ---- | ---- | ---- | ---- |
 | Total N deposition | `zzz` | `zzz` | `zzz` |
-| Percent wet deposition | `zzz` | `zzz` | `zzz` |
-| Percent oxidized | `zzz` | `zzz` | `zzz` |
+| Percent wet N deposition | `zzz` | `zzz` | `zzz` |
+| Percent oxidized N | `zzz` | `zzz` | `zzz` |
+
+Table: TDep total deposition.
 
 *TODO: map of TDep with land unit boundary*
 
@@ -201,18 +203,19 @@ knitr::kable(tab_02,
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
-### Alpine vegetation
+# Alpine vegetation
 
-**Citation:** \tab Bowman et al. (2012)  
+**Citation:** Bowman et al. (2012)  
 
-**Description:** Researchers fertilized alpine vegetation with increasing levels of N to determine the level of deposition that changed community compositions.  Plots were located in multiple sites on the eastern edge of the Rocky Mountains of Colorado.  Models calculated a 2.5\% increase in *Carex rupestris* cover per year at 3.0 kg N ha^-1^ y^-1^, and increases in $NO_{3}$ leaching below the rooting zone at 10.0 kg N ha^-1^ y^-1^.  
+**Description:** Researchers fertilized alpine vegetation with increasing levels of N to determine the level of deposition that changed community compositions.  Plots were located in multiple sites on the eastern edge of the Rocky Mountains of Colorado.  Models calculated a 2.5\% increase in *Carex rupestris* cover per year at 3.0 kg N ha^-1^ y^-1^, and increases in NO~3~ leaching below the rooting zone at 10.0 kg N ha^-1^ y^-1^.  
 
 **Response:** Response curves were not calculated.  
 
 **Notes:** This CL is specific to alpine meadow habitats, but is applied more broadly due to lack of additional data and because alpine vegetation occurs in a range of habitats above treeline. The sedge species in the N-fertilization experiment occurs across the Rocky Mountains but not elsewhere. The CL is extrapolated because similar CLs exist in harsh, low-nutrient ecosystems.  
 
-**Critical load of N for an increase in alpine sedge growth:** 3.0 kg N ha^-1^ y^-1^
-**Critical load of N for an increase in soil N leaching:** 10.0 kg N ha^-1^ y^-1^
+**Critical load of N for an increase in alpine sedge growth:** 3.0 kg N ha^-1^ y^-1^  
+
+**Critical load of N for an increase in soil N leaching:** 10.0 kg N ha^-1^ y^-1^  
 
 **Data type:** surface  
 
@@ -223,9 +226,11 @@ knitr::kable(tab_02,
 **Data description:** The critical loads are applied to all areas above sea level within each land unit because national datasets were inconsistent in identifying vegetated areas relative to local surveys (McClung et al. 2021). The alpine dataset is extracted from the USGS Gap Analysis Project.  
 
 | Type | Alpine area (km^2^) | Area < CL (km^2^) | Area at CL (km^2^) | Area > CL (km^2^) |
-| ---- | ---- | ---- | ----
+| ---- | ---- | ---- | ---- | ---- |
 | Increased sedge growth | `zzz` | `zzz` | `zzz` | `zzz` |
-| Increased $NO_{3}$ leaching | `zzz` | `zzz` | `zzz` | `zzz` |
+| Increased NO~3~ leaching | `zzz` | `zzz` | `zzz` | `zzz` |  
+
+Table: Surface exceedances (alpine critical loads).
 
 
 \newpage
@@ -235,9 +240,9 @@ knitr::kable(tab_02,
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
-### Herbaceous plant species richness
+# Herbaceous plant species richness
 
-**Citation:** \tab Simkin et al. (2016)  
+**Citation:** Simkin et al. (2016)  
 
 **Description:** This analysis used 15,136 herbaceous vegetation survey plots to evaluate how plant species richness varies with nitrogen deposition, soil pH, mean annual precipitation, and mean annual temperature.  Plots (15,136) within the Simkin et al. (2016) dataset are classified as open-canopy (3,317) or closed-canopy (11,819) based on tree canopy cover at plot locations.  Each plot has a CL value based on a modeled response with pH (for closed-canopy) or pH, precipitation and temperature (for open-canopy). Plot locations are distributed non-randomly across the continental US, with implications discussed below.  
 
@@ -257,7 +262,6 @@ knitr::kable(tab_02,
 
 **Point data description:** A sample size analysis was completed to determine if there were enough points to accurately estimate a CL for a specific land unit (Lynch et al. 2017). The deposition level at which species richness declines 10\% is calculated via the maximum potential richness using pH, precip, and temperature data. When a point is in exceedance of the critical load, the expected decline was calculated using TDep Total N data from 2017-2019.  
 
-
 **Data type:** surface  
 
 **Cell size:** 30 m  
@@ -266,34 +270,39 @@ knitr::kable(tab_02,
 
 **Surface data description:** Equations from Simkin et al. (2016) were used to develop a continuous surface of critical loads using PRISM 800-m 30-y mean annual precipitation and temperature, and 30-m gNATSGO DCP soil pH 0-20 cm. Each dataset was clipped to the appropriate ecosystem type using National Land Cover Database (NLCD) data. Open-canopy systems were defined by the 2016 NLCD as grassland, shrubland, and woodland, with alpine areas removed; closed-canopy systems were made up of deciduous forest, evergreen forest, and mixed forest. The deposition level at which species richness declines 10\% is calculated via the max potential richness using pH, precipitation, and temperature data. When a point is in exceedance of the critical load, the expected decline was calculated using TDep Total N data from 2017-2019.  
 
-##### Point Critical Loads
+\newpage
+
 | Canopy | Count | Sample size met? | Min CL | Median CL | Max CL | Min 10\% decline | Med 10\% decline | Max 10\% decline | 
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | Open   | `zzz` | Yes/No | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | Closed | `zzz` | Yes/No | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
-##### Surface Critical Loads
+Table: Point critical loads (herb richness).
+
+
 | Canopy | Min CL | Median CL | Max CL | Min 10\% decline | Med 10\% decline | Max 10\% decline | 
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | 
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
+Table: Surface critical loads (herb richness).
 
-##### Point Exceedances
+
 | Canopy | Count | Points < CL | Points at CL | Points > CL | Min richness decline | Max richness decline |
-| ---- | ---- | ---- | ----
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
-##### Surface Exceedances
-Ecosystem	Area	Area below CL	Area at CL	Area above CL	Min richness decline	Max richness decline
-Open	Sum area	Area <-0.5 kg/ha/yr	Area -0.5<x<0.5 kg/ha/yr	Area >0.5 kg/ha/yr	Min of OC_HSR_N_CL_resp1719	Max of OC_HSR_N_CL_resp1719
-Closed	Sum area	Area <-0.5 kg/ha/yr	Area -0.5<x<0.5 kg/ha/yr	Area >0.5 kg/ha/yr	Min of CC_HSR_N_CL_resp1719	Max of CC_HSR_N_CL_resp1719
+Table: Point exceedances (herb richness).
+
 
 | Canopy | Area (km^2^) | Area < CL (km^2^) | Area at CL (km^2^) | Area > CL (km^2^) | Min richness decline | Max richness decline |
-| ---- | ---- | ---- | ----
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+
+Table: Surface exceedances (herb richness).
+
 
 
 
@@ -304,54 +313,7 @@ Closed	Sum area	Area <-0.5 kg/ha/yr	Area -0.5<x<0.5 kg/ha/yr	Area >0.5 kg/ha/yr	
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### References
+# References
 
 > Bowman, W. D., J. Murgel, T. Blett, and E. Porter. 2012. Nitrogen critical loads for alpine vegetation and soils in Rocky Mountain National Park. Journal of Environmental Management 103:165-171.
 
