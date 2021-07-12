@@ -1,13 +1,13 @@
 Package: cladar
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Critical Loads of Atmospheric Deposition Automatic Reporter
+Version: 0.0.1-2021-07-12
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Robert",
+           family = "Smith",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "robert.smith3@usda.gov",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: The goal of `cladar` is to generate templates for automated reporting of air-quality information based on critical loads.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
