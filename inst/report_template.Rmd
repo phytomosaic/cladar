@@ -85,31 +85,11 @@ options(knitr.kable.NA = '')
 # }
 ```
 
-<!-- \vspace*{\fill} -->
-<!-- \begin{wrapfigure}{l}{1.8cm} -->
-<!-- \includegraphics{usfs.png} -->
-<!-- \end{wrapfigure} -->
-
-<!-- \   -->
-
-<!-- Air Resource Management Program   -->
-<!-- USDA Forest Service   -->
-<!-- 1400 Independence Ave SW   -->
-<!-- Washington, DC 20250   -->
-
-<!-- \   -->
-
-<!-- \newpage -->
-
-<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
-<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
-<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+\newpage
 
 # Motivation
 
-A critical load (CL) is the atmospheric deposition level expected to result in harmful ecosystem changes.  Exceedance is the degree to which locally observed deposition goes beyond an established CL.  
-
-<!-- See **[critical loads we used](#critical-loads-we-used)**. -->
+A critical load (CL) is the atmospheric deposition level expected to result in harmful ecosystem changes.  Exceedance is the amount by which local deposition goes beyond an established CL.  
 
 # Summary
 
@@ -139,6 +119,7 @@ Nitrate Leaching maximum: \tab `zzz`
 Aquatic minimum: \tab `zzz`  
 Aquatic maximum: \tab `zzz`  
 
+\newpage
 
 ## Extended summary of critical loads
 
@@ -371,11 +352,8 @@ Table: Surface exceedances (herb richness).
 Table: Tree species critical loads summary.
 
 
-\newpage
-
-
 | Species | Response | Count | Critical load (kg N ha^-1^ y^-1^) | Min deposition | Max deposition | Points < CL | Points at CL | Points > CL | Min response | Max response |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| --------------- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | *Pseudotsuga menziesii* | Growth | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | *Pseudotsuga menziesii* | Survival | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | *Pinus ponderosa* | Growth | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
@@ -386,19 +364,16 @@ Table: Tree species critical loads summary.
 Table: Tree species growth and survival responses (based on point data).
 
 
-
 | Species | Response | Direction | Min response | Median response | Max response |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| *Pseudotsuga menziesii* | Growth | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
-| *Pseudotsuga menziesii* | Survival | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
-| *Pinus ponderosa* | Growth | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
-| *Pinus ponderosa* | Survival | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
-| *Acer glabrum* | Growth | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
-| *Acer glabrum* | Survival | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+| --------------- | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| *Pseudotsuga menziesii* | Growth | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pseudotsuga menziesii* | Survival | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pinus ponderosa* | Growth | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pinus ponderosa* | Survival | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Acer glabrum* | Growth | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Acer glabrum* | Survival | `zzz` | `zzz` | `zzz` | `zzz` |
 
 Table: Tree species growth and survival responses (based on species list data).
-
-
 
 
 \newpage
