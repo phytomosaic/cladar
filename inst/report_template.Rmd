@@ -1,5 +1,6 @@
 ---
 title: \vspace{-1.5cm}{Critical Loads Summary \break for `r params$unit`}
+# title: Critical Loads Summary for `r params$unit`
 header-includes:
 - \usepackage{hyperref} \hypersetup{pdfstartview={XYZ null null 1.00}, colorlinks
   = true, linkcolor = red, urlcolor = red}
@@ -313,6 +314,100 @@ Table: Surface exceedances (herb richness).
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
+# Tree growth and survival
+
+**Citation:** Horn et al. (2018)  
+
+**Description:** The growth model assumes a maximum potential growth rate (as a function of tree size) modified by competition and climate (Thomas et al. 2010). First, the data were assessed to evaluate whether deposition was important for growth or survival. Several models were assessed to determine whether models with N and/or S deposition terms were more explanatory than models based only on tree size, climate, and competition. If the model with N and/or S deposition was selected over the model without the deposition terms for a given species, the relationship between deposition and growth for that species was included in the assessment.  
+
+**Response:** The shapes of the response curves for N were 1) increasing, 2) unimodal (hump-shaped), 3) decreasing, or 4) no response and thus flat.  For S these were constrained to either 1) decreasing or 2) flat. The CL was set at the point with maximum growth or survival, in the following way for the four different response patterns as deposition increased:  
+1.	Threshold--the CL was set at the highest growth/survival level for species with a unimodal (hump-shaped) response.  
+2.	Decreasing-- the CL was set at less than lowest deposition level at which the species occurred and labeled decreasing.  
+3.	Increasing— the CL was set as greater than highest deposition level at which the species occurred for response curves that increased across the whole deposition range.  
+4.	No critical load was set if there was no trend in response.   
+\  
+
+![Example of four possible tree responses. Nitrogen deposition increases from left to right.  Tree growth or survival on vertical axis.](./four_responses.png)
+<!-- \vspace*{\fill} -->
+<!-- \begin{wrapfigure}{l}{1.8cm} -->
+<!-- \includegraphics{four_responses.png} -->
+<!-- \end{wrapfigure} -->
+<!-- \   -->
+
+**Notes:** Mike TODO.  
+
+**Critical load of N for a decline in tree species survival:** single for each tree species, variable in amount and direction of change with a combination of tree size, climate, and competition.  
+
+**Critical load of N for a decline in tree species growth:** single for each tree species, variable in amount and direction of change with a combination of tree size, climate, and competition.  
+
+**Data type:** point  
+
+**Point data description:** Forest Inventory and Analysis plots provide a list of tree species, later paired with nitrogen deposition and environmental covariates in the critical loads models. Level of nitrogen deposition above a critical load was used to calculate the modeled percent decline in growth or survival.  
+
+**Data type:** species list  
+
+**Point data description:** Using a list of tree species, alongside the range of N deposition within a land unit, allows for the maximum and minimum level of response to be calculated.  If the minimum deposition exceeds a species' critical load, then the species is at risk at all locations within the land unit, while if only the maximum deposition is in exceedance, then additional analysis needs to be completed to know if the species exists in the area it would be in exceedance.  
+
+**Data type:** surface  
+
+**Cell size:** 30 m  
+
+**Most recent data:** xxxx-xxxx  
+
+**Surface data description:** The list of tree species within a land unit is paired with Wilson et al. (2012) species distribution models at 100-m resolution and TDep modeled deposition.  This information is used to calculate critical loads exceedances, expected response level, and basal area impacted.  
+
+
+| Tree CL type | Critical load (kg N ha^-1^ y^-1^) | 
+| ------------ | -------------- |
+| Tree species with growth CL | 9 | 
+| Minimum growth CL    | 2.6 | 
+| Median growth CL     | 6.9 | 
+| Maximum growth CL    | 20.1 | 
+|  Tree species with survival CL | 11 | 
+| Minimum survival CL  | 3.6 | 
+| Median survival CL   | 6.1 | 
+| Maximum survival CL  | 12.0 | 
+
+Table: Tree species critical loads summary.
+
+
+\newpage
+
+
+| Species | Response | Count | Critical load (kg N ha^-1^ y^-1^) | Min deposition | Max deposition | Points < CL | Points at CL | Points > CL | Min response | Max response |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| *Pseudotsuga menziesii* | Growth | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pseudotsuga menziesii* | Survival | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pinus ponderosa* | Growth | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pinus ponderosa* | Survival | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Acer glabrum* | Growth | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Acer glabrum* | Survival | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+
+Table: Tree species growth and survival responses (based on point data).
+
+
+
+| Species | Response | Direction | Min response | Median response | Max response |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| *Pseudotsuga menziesii* | Growth | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+| *Pseudotsuga menziesii* | Survival | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+| *Pinus ponderosa* | Growth | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+| *Pinus ponderosa* | Survival | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+| *Acer glabrum* | Growth | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+| *Acer glabrum* | Survival | `decrease/increase/flat` | `zzz` | `zzz` | `zzz` |
+
+Table: Tree species growth and survival responses (based on species list data).
+
+
+
+
+\newpage
+
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+
+
 # References
 
 > Bowman, W. D., J. Murgel, T. Blett, and E. Porter. 2012. Nitrogen critical loads for alpine vegetation and soils in Rocky Mountain National Park. Journal of Environmental Management 103:165-171.
@@ -326,6 +421,10 @@ Table: Surface exceedances (herb richness).
 > Schwede and Lear. 2014. TODO.
 
 > Simkin, S. M., E. B. Allen, W. D. Bowman, C. M. Clark, J. Belnap, M. L. Brooks, B. S. Cade, S. L. Collins, L. H. Geiser, F. S. Gilliam, S. E. Jovan, L. H. Pardo, B. K. Schulz, C. J. Stevens, K. N. Suding, H. L. Throop, and D. M. Waller. 2016. Conditional vulnerability of plant diversity to atmospheric nitrogen deposition across the United States. Proceedings of the National Academy of Sciences 113:4086-4091.
+
+> Thomas et al. 2010. TODO.
+
+> Wilson et al. 2012. TODO.
 
 
 
