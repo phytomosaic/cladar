@@ -1,15 +1,15 @@
 ---
 title: \vspace{-1.5cm}{Critical Loads Summary \break for `r params$unit`}
-# title: Critical Loads Summary for `r params$unit`
 header-includes:
-- \usepackage{hyperref} \hypersetup{pdfstartview={XYZ null null 1.00}, colorlinks
-  = true, linkcolor = red, urlcolor = red}
+- \usepackage{hyperref} \hypersetup{pdfstartview={XYZ null null 1.00}, 
+  colorlinks = true, linkcolor = red, urlcolor = red}
 - \usepackage{float} \floatplacement{figure}{H}
 - \usepackage[font=small,skip=0pt]{caption}
 - \usepackage{wrapfig}
 - \usepackage{booktabs}
 - \usepackage{longtable}
 - \usepackage{tabto}
+- \usepackage{caption}
 params:
   unit: 'Bridger-Teton National Forest'
 output:
@@ -95,33 +95,45 @@ A critical load (CL) is the atmospheric deposition level expected to result in h
 
 ## Estimated deposition range for `r params$unit`
 
-Minimum total N deposition: `zzz` kg ha^-1^ y^-1^  
-Maximum total N deposition: `zzz` kg ha^-1^ y^-1^  
+\captionsetup{width=5.5cm}
+
+| Deposition   | Minimum | Maximum |
+| ------------ | ------ | ------ |
+| Nitrogen     | `zzz` | `zzz` |
+| Sulfur       | `zzz` | `zzz` |
+Table: Estimated deposition range for `r params$unit`, from the 2017-2019 three-year average of total nitrogen or total sulfur modeled by Total Deposition (TDep).  Units: kg ha^-1^ y^-1^.
 
 ## Short summary of critical loads
 
-Alpine minimum: \tab  `zzz`  
-Alpine maximum: \tab `zzz`  
-Herb richness minimum: \tab `zzz`  
-Herb richness maximum: \tab `zzz`  
-Herb richness 10\% decline: \tab `zzz`  
-Herb richness median: \tab `zzz`  
-Tree growth minimum: \tab `zzz`  
-Tree growth median: \tab `zzz`  
-Tree survival minimum: \tab `zzz`  
-Tree survival median: \tab `zzz`  
-Lichen minimum: \tab `zzz`  
-Lichen maximum: \tab `zzz`  
-Mycorrhizal fungi minimum: \tab `zzz`  
-Mycorrhizal fungi maximum: \tab `zzz`  
-Nitrate Leaching minimum: \tab `zzz`  
-Nitrate Leaching maximum: \tab `zzz`  
-Aquatic minimum: \tab `zzz`  
-Aquatic maximum: \tab `zzz`  
+\captionsetup{width=8.5cm}
+
+| Ecosystem component | Nitrogen CL | Sulfur CL |
+| -------- | ------ | ------ |
+| Alpine minimum:  | `zzz`  | `zzz`  |
+| Alpine maximum:  | `zzz`  | `zzz`  | 
+| Herb richness minimum: | `zzz`  | `zzz`  |
+| Herb richness maximum: | `zzz`  | `zzz`  |
+| Herb richness 10\% decline: | `zzz`  | `zzz`  | `zzz`  |
+| Herb richness median: | `zzz`  | `zzz`  |
+| Tree growth minimum: | `zzz`  | `zzz`  |
+| Tree growth median: | `zzz`  | `zzz`  |
+| Tree survival minimum: | `zzz`  | `zzz`  |
+| Tree survival median: | `zzz`  | `zzz`  |
+| Lichen minimum: | `zzz`  | `zzz`  |
+| Lichen maximum: | `zzz`  | `zzz`  |
+| Mycorrhizal fungi minimum: | `zzz`  | `zzz`  |
+| Mycorrhizal fungi maximum: | `zzz`  | `zzz`  |
+| Nitrate Leaching minimum: | `zzz`  | `zzz`  |
+| Nitrate Leaching maximum: | `zzz`  | `zzz`  |
+| Aquatic minimum: | `zzz`  | `zzz`  |
+| Aquatic maximum: | `zzz`  | `zzz`  |
+Table: Abbreviated summary of critical loads used to establish conditions and trends by ecosystem component. Units: kg ha^-1^ y^-1^.
 
 \newpage
 
 ## Extended summary of critical loads
+
+\captionsetup{width=\textwidth}
 
 ```{r critical_loads_tab_02}
 tab <- data.frame(Metric = c('Species richness',
@@ -138,10 +150,10 @@ knitr::kable(tab_02,
              row.names = F, 
              longtable = T,
              booktabs  = T,
-             caption   = 'Extended summary of critical loads. Critical loads given as (kg ha^-1^ y^-1^).',
+             caption   = 'Extended summary: all available information for all ecosystem components.  Units: kg ha^-1^ y^-1^.',
              escape    = F,
              col.names = c(
-               'Ecosystem component','Source','Name','Critical load (kg N ha^-1^ y^-1^)')
+               'Ecosystem component','Source','Name','Nitrogen CL', 'Sulfur CL')
              )
 ```
 
@@ -157,7 +169,7 @@ knitr::kable(tab_02,
 
 **Citation:** Schwede and Lear (2014)  
 
-**Description:** Deposition of N-containing compounds was modeled with the National Atmospheric Deposition Program Total Deposition Model (TDep).  Total N incorporates both wet and dry deposition of oxidized (NO~x~, HNO~3~) and reduced N species (NH~x~). To smooth year-to-year variation, we report mean annual deposition for the three-year period 2015-2017.  
+**Description:** Deposition of N- and S-containing compounds was modeled with the National Atmospheric Deposition Program Total Deposition Model (TDep).  For total N deposition, the TDep model (version 2018.02) uses measurements of HNO~3~ (dry), NO~3~ (wet/dry) and NH~4~ (wet) to modify the CMAQ model (v.5.0.2), and then incorporates modeled dry deposition of gaseous NH~3~, PAN, N~2~O~5~, NO, NO~2~, HONO, and organic nitrates (Schwede and Lear 2014). For total S deposition, the TDep model (v.2018.02) uses measurements of SO~2~ (dry), pSO~4~ (dry) and SO~4~ (wet) to modify outputs of the CMAQ model (version 5.0.2).  To smooth year-to-year variation, we report mean annual deposition for the three-year period 2017-2019.  
 
 **Cell size:** 4134 m  
 
@@ -170,8 +182,10 @@ knitr::kable(tab_02,
 | Total N deposition | `zzz` | `zzz` | `zzz` |
 | Percent wet N deposition | `zzz` | `zzz` | `zzz` |
 | Percent oxidized N | `zzz` | `zzz` | `zzz` |
+| Total S deposition | `zzz` | `zzz` | `zzz` |
+| Percent wet S deposition | `zzz` | `zzz` | `zzz` |
 
-Table: TDep total deposition.
+Table: Estimated deposition minimum, median and maximum for `r params$unit`, from the 2017-2019 three-year average of total nitrogen or total sulfur modeled by Total Deposition (TDep). Percent wet deposition values are provided for clarity of deposition types.  Units: kg ha^-1^ y^-1^.
 
 *TODO: map of TDep with land unit boundary*
 
@@ -191,7 +205,7 @@ Table: TDep total deposition.
 
 **Description:** Researchers fertilized alpine vegetation with increasing levels of N to determine the level of deposition that changed community compositions.  Plots were located in multiple sites on the eastern edge of the Rocky Mountains of Colorado.  Models calculated a 2.5\% increase in *Carex rupestris* cover per year at 3.0 kg N ha^-1^ y^-1^, and increases in NO~3~ leaching below the rooting zone at 10.0 kg N ha^-1^ y^-1^.  
 
-**Response:** Response curves were not calculated.  
+**Response:** Response curves were not calculated in this analysis.  
 
 **Notes:** This CL is specific to alpine meadow habitats, but is applied more broadly due to lack of additional data and because alpine vegetation occurs in a range of habitats above treeline. The sedge species in the N-fertilization experiment occurs across the Rocky Mountains but not elsewhere. The CL is extrapolated because similar CLs exist in harsh, low-nutrient ecosystems.  
 
@@ -212,7 +226,69 @@ Table: TDep total deposition.
 | Increased sedge growth | `zzz` | `zzz` | `zzz` | `zzz` |
 | Increased NO~3~ leaching | `zzz` | `zzz` | `zzz` | `zzz` |  
 
-Table: Surface exceedances (alpine critical loads).
+Table: Alpine area (km^2^) below, at or above critical loads of N for alpine ecosystems.
+
+
+\newpage
+
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+
+
+# Aquatic systems: shift from N- to P-limitation 
+
+**Citation:** Williams et al. (2017)  <!-- TODO: add Williams et al 2017 -->
+
+**Description:** Critical loads of N for shifts from N to P limitation of phytoplankton biomass growth in high elevation lakes are from Williams et al. (2017), who showed accurate prediction of NO~3~ threshold exceedance in 69% of lakes at a critical load of 4.1 kg ha^-1^ y^-1^.  
+
+To define the CL, Williams et al. (2017) first selected a biological measure of nutrient limitation shifts, and defined its threshold value.  Second, logistic regression defined lake water chemical thresholds for nitrate, dissolved inorganic nitrogen (DIN), and DIN-to-total phosphorus (TP) mass ratio DIN:TP associated with 50% and 70% probability of exceeding the biological threshold.  Third, logistic regression models described the mathematical relationship between nitrogen deposition and exceedance of biological thresholds (an empirical critical load) or chemical thresholds (a modeled critical load). Logistic regression was appropriate to identify critical loads because lake water NO~3~ responses to N deposition typically show a dog-leg rather than linear pattern (see Williams et al. 2017).  
+
+Data from bioassays in 47 mountain lakes (>1200m) within federal land units were used to define biological (RR-N/RR-P = 1) and chemical (NO~3~, DIN, DIN:TP) thresholds above which biomass P limitation exceeds N limitation. Williams et al. (2017) applied this critical load to an independent sample of 385 mountain lakes with NO~3~ data to estimate the frequency it would fail to predict a limitation shift. Lake chemistry data used in analyses were obtained from the Georeferenced Lake Nutrient Chemistry (GLNC) database (Williams and Labou 2017).  
+
+**Response:** Across models, estimated critical loads ranged from 2.8 to 5.2 kg N ha^-1^ y^-1^. The best-performing model, a univariate logistic model with N deposition as the only predictor of NO~3~ threshold exceedance, gave a critical load of 4.1 kg N ha^-1^ y^-1^, and accurately predicted NO~3~ threshold exceedance in 69% of lakes.
+
+**Notes:** The false-negative rate of the 385 mountain lakes was 13% across the western United States, but was slightly higher (22%) in the Sierras.  Performance analyses suggest a 2.0 kg N ha^-1^ y^-1^ critical load may avoid false negatives entirely.  Critical load of N for shifts from N to P limitation of phytoplankton biomass growth in high elevation lakes was identified at 4.1 kg N ha^-1^ y^-1^.
+
+**Data type:** Point
+
+**Data description:** To extrapolate results beyond the lakes identified in the manuscript, we used the USGS National Hydrography Dataset Plus High Resolution to identify lakes in the western United States above 1,200 m and 1--70 ha in size.  Each point was given a critical load of 4.1 kg N ha^-1^ y^-1^, and local N deposition was extracted from the 2017-2019 TDep total N model to calculate exceedances.
+
+| Total number of lakes | Number of lakes < CL | Number of lakes at CL | Number of lakes > CL |
+| ---- | ---- | ---- | ---- |
+| `zzz` | `zzz` | `zzz` | `zzz` |
+| `zzz` | `zzz` | `zzz` | `zzz` |  
+Table: Number of high-elevation lakes in exceedance of the 4.1 kg N ha^-1^ y^-1^ critical load, based on 2017-2019 TDep total N.
+
+
+
+
+\newpage
+
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+
+# Aquatic systems: eutrophication
+
+**Citation:** Baron et al. (2012) <!-- TODO: add Baron et al 2012 -->
+
+**Description:** Baron et al. summarize the aquatic eutrophication literature 
+
+**Response:** The critical load for nutrient enrichment (increase in lake NO~3~) in western lakes ranged from 1.0--3.0 kg N ha^-1^ y^-1^, reflecting the nearly nonexistent vegetation in complex, snowmelt-dominated watersheds.  The same critical load for northeastern lakes ranged from 3.5--6.0 kg N ha^-1^ y^-1^.
+
+**Notes:** Keep in mind that the threshold will differ between lakes of strongly vs. weakly vegetated catchments.  For eastern lakes, where ecosystems currently experience elevated N deposition, the ability to attribute biological changes directly to N deposition is confounded by decades of elevated atmospheric N deposition and land-use change.  
+
+**Data type:** Point
+
+**Data description:** To extrapolate results beyond the lakes identified in the manuscript, we used the USGS National Hydrography Dataset Plus High Resolution to identify lakes in the western United States above 1,200 m and 1--70 ha in size.  Each point was given a critical load of 4.1 kg N ha^-1^ y^-1^, and local N deposition was extracted from the 2017-2019 TDep total N model to calculate exceedances.
+
+| Total number of lakes | Number of lakes < CL | Number of lakes at CL | Number of lakes > CL |
+| ---- | ---- | ---- | ---- |
+| `zzz` | `zzz` | `zzz` | `zzz` |
+| `zzz` | `zzz` | `zzz` | `zzz` |  
+Table: Number of high-elevation lakes in exceedance of the nutrient enrichment critical loads, based on 2017-2019 TDep total N.
+
 
 
 \newpage
@@ -242,11 +318,11 @@ Table: Surface exceedances (alpine critical loads).
 
 **Most recent data:** xxxx-xxxx  
 
-**Point data description:** A sample size analysis was completed to determine if there were enough points to accurately estimate a CL for a specific land unit (Lynch et al. 2017). The deposition level at which species richness declines 10\% is calculated via the maximum potential richness using pH, precip, and temperature data. When a point is in exceedance of the critical load, the expected decline was calculated using TDep Total N data from 2017-2019.  
+**Point data description:** A sample size analysis was completed to determine if there were enough points to accurately estimate a CL for a specific land unit (Lynch et al. 2020). The deposition level at which species richness declines 10\% is calculated via the maximum potential richness using pH, precip, and temperature data. When a point is in exceedance of the critical load, the expected decline was calculated using TDep Total N data from 2017-2019.  
 
 **Data type:** surface  
 
-**Cell size:** 30 m  
+**Cell size:** 240 m  
 
 **Most recent data:** xxxx-xxxx  
 
@@ -259,7 +335,14 @@ Table: Surface exceedances (alpine critical loads).
 | Open   | `zzz` | Yes/No | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | Closed | `zzz` | Yes/No | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
-Table: Point critical loads (herb richness).
+Table: Critical loads of N for decline in herbaceous plant species richness, and the deposition at which a 10\% loss of richness occurs, based on point data from Simkin et al. (2016).
+
+| Canopy | Count | Points < CL | Points at CL | Points > CL | Min richness decline | Max richness decline |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+
+Table: The exceedance of critical loads of N, and the expected decline in richness, for point data based on 2017-2019 TDep total N.
 
 
 | Canopy | Min CL | Median CL | Max CL | Min 10\% decline | Med 10\% decline | Max 10\% decline | 
@@ -267,15 +350,7 @@ Table: Point critical loads (herb richness).
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | 
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
-Table: Surface critical loads (herb richness).
-
-
-| Canopy | Count | Points < CL | Points at CL | Points > CL | Min richness decline | Max richness decline |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
-| Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
-
-Table: Point exceedances (herb richness).
+Table: Table: Critical loads of N for decline in herbaceous plant species richness, and the deposition at which a 10\% loss of richness occurs, based on modeled surfaces using equations from Simkin et al. (2016).
 
 
 | Canopy | Area (km^2^) | Area < CL (km^2^) | Area at CL (km^2^) | Area > CL (km^2^) | Min richness decline | Max richness decline |
@@ -283,10 +358,7 @@ Table: Point exceedances (herb richness).
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
-Table: Surface exceedances (herb richness).
-
-
-
+Table: The exceedance of critical loads of N, and the expected decline in richness, for modeled surface data based on 2017-2019 TDep total N.
 
 \newpage
 
@@ -385,21 +457,32 @@ Table: Tree species growth and survival responses (based on species list data).
 
 # References
 
-> Bowman, W. D., J. Murgel, T. Blett, and E. Porter. 2012. Nitrogen critical loads for alpine vegetation and soils in Rocky Mountain National Park. Journal of Environmental Management 103:165-171.
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+\setlength{\parskip}{8pt}
+\noindent
 
-> Horn, K. J., R. Q. Thomas, C. M. Clark, L. H. Pardo, M. E. Fenn, G. B. Lawrence, S. S. Perakis, E. A. H. Smithwick, D. Baldwin, S. Braun, A. Nordin, C. H. Perry, J. N. Phelan, P. G. Schaberg, S. B. St. Clair, R. Warby, and S. Watmough. 2018. Growth and survival relationships of 71 tree species with nitrogen and sulfur deposition across the conterminous U.S. PLoS ONE 13:e0205296.
+Bowman, W. D., J. Murgel, T. Blett, and E. Porter. 2012. Nitrogen critical loads for alpine vegetation and soils in Rocky Mountain National Park. _Journal of Environmental Management_ 103:165-171.
 
-> Lynch et al. 2017. TODO.
+Geiser, L. H., P. R. Nelson, S. Jovan, H. T. Root, and C. M. Clark. 2019. Assessing ecological risks from atmospheric deposition of nitrogen and sulfur to US forests using epiphytic macrolichens. _Diversity_ 11(6):87.
 
-> McClung et al. 2021. TODO.
+Geiser, L.H., H. T. Root, R. J. Smith, S. Jovan, L. St. Clair, and K. L. Dillman. 2021. Lichen-based critical loads for atmospheric deposition in US Forests. _Environmental Pollution_. In review.
 
-> Schwede and Lear. 2014. TODO.
+Horn, K. J., R. Q. Thomas, C. M. Clark, L. H. Pardo, M. E. Fenn, G. B. Lawrence, S. S. Perakis, E. A. H. Smithwick, D. Baldwin, S. Braun, A. Nordin, C. H. Perry, J. N. Phelan, P. G. Schaberg, S. B. St. Clair, R. Warby, and S. Watmough. 2018. Growth and survival relationships of 71 tree species with nitrogen and sulfur deposition across the conterminous U.S. _PLoS ONE_ 13:e0205296.
 
-> Simkin, S. M., E. B. Allen, W. D. Bowman, C. M. Clark, J. Belnap, M. L. Brooks, B. S. Cade, S. L. Collins, L. H. Geiser, F. S. Gilliam, S. E. Jovan, L. H. Pardo, B. K. Schulz, C. J. Stevens, K. N. Suding, H. L. Throop, and D. M. Waller. 2016. Conditional vulnerability of plant diversity to atmospheric nitrogen deposition across the United States. Proceedings of the National Academy of Sciences 113:4086-4091.
+Lynch, J. A., J. Phelan, L. H. Pardo, T. C. McDonnell, C. M. Clark, M. D. Bell, L. H. Geiser, and R. J. Smith. 2020. _National Critical Load Database (NCLD) for U.S. Critical Loads of Sulfur and Nitrogen (v. 3.2)._ National Atmospheric Deposition Program, Wisconsin State Laboratory, Madison, WI.
 
-> Thomas et al. 2010. TODO.
+McClung, J., M. Bell, and E. Felker-Quinn. 2021. _Extrapolating critical loads of nitrogen for alpine vegetation and assessing exceedance in national parks based on TDep Total N from 2002–2016._ Natural Resource Report NPS/NRSS/ARD/NRR—2021/2240. National Park Service. Fort Collins, Colorado.
 
-> Wilson et al. 2012. TODO.
+Schwede, D. B., and G. G. Lear. 2014. A novel hybrid approach for estimating total deposition in the United States. _Atmospheric Environment_ 92:207–220.
+
+Simkin, S. M., E. B. Allen, W. D. Bowman, C. M. Clark, J. Belnap, M. L. Brooks, B. S. Cade, S. L. Collins, L. H. Geiser, F. S. Gilliam, S. E. Jovan, L. H. Pardo, B. K. Schulz, C. J. Stevens, K. N. Suding, H. L. Throop, and D. M. Waller. 2016. Conditional vulnerability of plant diversity to atmospheric nitrogen deposition across the United States. _Proceedings of the National Academy of Sciences_ 113:4086-4091.
+
+Thomas, R. Q., C. D. Canham, K. C. Weathers, and C. L. Goodale. 2010. Increased tree carbon storage in response to nitrogen deposition in the US. _Nature Geoscience_ 3:13–17.
+
+Wilson, B. T., A. J. Lister, and R. I. Riemann. 2012. A nearest-neighbor imputation approach to mapping tree species over large areas using forest inventory plots and moderate resolution raster data. _Forest Ecology and Management_ 271:182–198.
+
+
 
 
 
