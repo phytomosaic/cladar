@@ -1,41 +1,41 @@
-Ecosystem component,Type,Name,Critical load (kg N ha^-1^ y^-1^)
-Deposition,Model,Minimum deposition,z
-Deposition,Model,Maximum deposition,z
-Alpine,Area,Alpine vegetation change,z
-Alpine,Area,Alpine soil leaching,z
-Herb,Plot,Herb richness (open plot min.),z
-Herb,Model,Herb richness (open surface min.),z
-Herb,Model,Herb richness (open surface 10% decline),z
-Herb,Plot,Herb richness (closed plot min.),z
-Herb,Model,Herb richness (closed surface min.),z
-Herb,Model,Herb richness (closed surface 10% decline),z
-Herb,Area,Pardo herb minimum,z
-Herb,Area,Pardo herb maximum,z
-Herb,Plot,Herb richness minimum,z
-Herb,Plot,Herb richness 10% decline,z
-Herb,Plot,Herb richness median,z
-Herb,Plot,Herb richness maximum,z
-Forest,Area,Forest minimum,z
-Forest,Area,Forest maximum,z
-Forest,Plot,Tree growth minimum,z
-Forest,Plot,Tree growth median,z
-Forest,Plot,Tree growth maximum,z
-Forest,Plot,Tree survival minimum,z
-Forest,Plot,Tree survival median,z
-Forest,Plot,Tree survival maximum,z
-Lichen,Area,Lichen minimum,z
-Lichen,Area,Lichen maximum,z
-Lichen,Model,Lichen total richness,z
-Lichen,Model,Lichen total richness 30% decline,z
-Lichen,Model,Sensitive lichen richness,z
-Lichen,Model,Sensitive lichen richness 30% decline,z
-Lichen,Model,Forage lichen abundance,z
-Lichen,Model,Forage lichen abundance 30% decline,z
-Lichen,Model,Cyanolichen abundance,z
-Lichen,Model,Cyanolichen abundance 30% decline,z
-Soil,Area,Mycorrhizal fungi minimum,z
-Soil,Area,Mycorrhizal fungi maximum,z
-Soil,Area,Nitrate leaching minimum,z
-Soil,Area,Nitrate leaching maximum,z
-Aquatic,Plot,Aquatic eutrophication (East) minimum,z
-Aquatic,Plot,Aquatic eutrophication (East) maximum,z
+Ecosystem component,Type,Name,N CL,S CL
+Deposition,Model,Minimum deposition,z,z
+Deposition,Model,Maximum deposition,z,z
+Alpine,Area,Alpine vegetation change,z,z
+Alpine,Area,Alpine soil leaching,z,z
+Herb,Plot,Herb richness (open plot min.),z,z
+Herb,Model,Herb richness (open surface min.),z,z
+Herb,Model,Herb richness (open surface 10% decline),z,z
+Herb,Plot,Herb richness (closed plot min.),z,z
+Herb,Model,Herb richness (closed surface min.),z,z
+Herb,Model,Herb richness (closed surface 10% decline),z,z
+Herb,Area,Pardo herb minimum,z,z
+Herb,Area,Pardo herb maximum,z,z
+Herb,Plot,Herb richness minimum,z,z
+Herb,Plot,Herb richness 10% decline,z,z
+Herb,Plot,Herb richness median,z,z
+Herb,Plot,Herb richness maximum,z,z
+Forest,Area,Forest minimum,z,z
+Forest,Area,Forest maximum,z,z
+Forest,Plot,Tree growth minimum,z,z
+Forest,Plot,Tree growth median,z,z
+Forest,Plot,Tree growth maximum,z,z
+Forest,Plot,Tree survival minimum,z,z
+Forest,Plot,Tree survival median,z,z
+Forest,Plot,Tree survival maximum,z,z
+Lichen,Area,Lichen minimum,z,z
+Lichen,Area,Lichen maximum,z,z
+Lichen,Model,Lichen total richness,z,z
+Lichen,Model,Lichen total richness 30% decline,z,z
+Lichen,Model,Sensitive lichen richness,z,z
+Lichen,Model,Sensitive lichen richness 30% decline,z,z
+Lichen,Model,Forage lichen abundance,z,z
+Lichen,Model,Forage lichen abundance 30% decline,z,z
+Lichen,Model,Cyanolichen abundance,z,z
+Lichen,Model,Cyanolichen abundance 30% decline,z,z
+Soil,Area,Mycorrhizal fungi minimum,z,z
+Soil,Area,Mycorrhizal fungi maximum,z,z
+Soil,Area,Nitrate leaching minimum,z,z
+Soil,Area,Nitrate leaching maximum,z,z
+Aquatic,Plot,Aquatic eutrophication (East) minimum,z,z
+Aquatic,Plot,Aquatic eutrophication (East) maximum,z,z
