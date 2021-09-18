@@ -187,9 +187,9 @@ knitr::kable(tab_02,
 
 Table: Estimated deposition minimum, median and maximum for `r params$unit`, from the 2017-2019 three-year average of total nitrogen or total sulfur modeled by Total Deposition (TDep). Percent wet deposition values are provided for clarity of deposition types.  Units: kg ha^-1^ y^-1^.
 
-*TODO: map of TDep with land unit boundary*
+<!-- *TODO: map of TDep with land unit boundary* -->
 
-*TODO: plot trend of Min/Med/Max*
+<!-- *TODO: plot trend of Min/Med/Max* -->
 
 
 \newpage
@@ -298,11 +298,11 @@ Table: Number of high-elevation lakes in exceedance of the nutrient enrichment c
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
-# Herbaceous plant species richness
+# Herbaceous plants: species richness
 
 **Citation:** Simkin et al. (2016)  
 
-**Description:** This analysis used 15,136 herbaceous vegetation survey plots to evaluate how plant species richness varies with nitrogen deposition, soil pH, mean annual precipitation, and mean annual temperature.  Plots (15,136) within the Simkin et al. (2016) dataset are classified as open-canopy (3,317) or closed-canopy (11,819) based on tree canopy cover at plot locations.  Each plot has a CL value based on a modeled response with pH (for closed-canopy) or pH, precipitation and temperature (for open-canopy). Plot locations are distributed non-randomly across the continental US, with implications discussed below.  
+**Description:** This analysis used 15,136 vegetation survey plots from Simkin et al. (2016) to evaluate how plant species richness varies with nitrogen deposition, soil pH, mean annual precipitation, and mean annual temperature.  Plots were classified as open-canopy (3,317) or closed-canopy (11,819) based on tree canopy cover at plot locations.  Each plot has a CL value based on a modeled response with pH (for closed-canopy) or pH, precipitation and temperature (for open-canopy). Plot locations were distributed non-randomly across the continental US, with implications discussed below.  
 
 **Response:** Total species richness initially increases with increasing N deposition under all soil pH, temperature, and precipitation conditions. The critical load is modeled to occur at the highest level of species richness based on environmental conditions. The rate of decline in species richness varies with pH in closed-canopy sites.  
 
@@ -337,6 +337,7 @@ Table: Number of high-elevation lakes in exceedance of the nutrient enrichment c
 
 Table: Critical loads of N for decline in herbaceous plant species richness, and the deposition at which a 10\% loss of richness occurs, based on point data from Simkin et al. (2016).
 
+
 | Canopy | Count | Points < CL | Points at CL | Points > CL | Min richness decline | Max richness decline |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
@@ -350,7 +351,7 @@ Table: The exceedance of critical loads of N, and the expected decline in richne
 | Open   | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | 
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
-Table: Table: Critical loads of N for decline in herbaceous plant species richness, and the deposition at which a 10\% loss of richness occurs, based on modeled surfaces using equations from Simkin et al. (2016).
+Table: Critical loads of N for decline in herbaceous plant species richness, and the deposition at which a 10\% loss of richness occurs, based on modeled surfaces using equations from Simkin et al. (2016).
 
 
 | Canopy | Area (km^2^) | Area < CL (km^2^) | Area at CL (km^2^) | Area > CL (km^2^) | Min richness decline | Max richness decline |
@@ -359,6 +360,67 @@ Table: Table: Critical loads of N for decline in herbaceous plant species richne
 | Closed | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
 
 Table: The exceedance of critical loads of N, and the expected decline in richness, for modeled surface data based on 2017-2019 TDep total N.
+
+
+
+\newpage
+
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+
+
+# Herbaceous plants: single-species probability of occurrence
+
+**Citation:** Clark et al. (2019) and Russell et al. (2021)
+
+**Description:** This analysis used individual species presence and cover from the 15,136 vegetation survey plots from Simkin et al. (2016) to determine the critical load of N and of S for the probability of occurrence of 358 herbaceous species. Each point/species combination has a CL value that is based on a modeled response that can include pH, precip, and temp. The plots in Clark et al. (2019) are distributed non-randomly across the lower 48-states, the implications of which are discussed below.
+
+**Response:** The probability of occurrence (POC) of each herbaceous species responds to N and S deposition in one of five ways. "Increasers" increase in POC as deposition increases; the critical load is set at maximum deposition of measured points as a harmful response has not yet been reached. "Decreasers" decrease in POC as deposition increases; the critical load is set at the minimum deposition of measured points since a harmful response is continuous across the distribution. A "Threshold" response (N only) initially increases as deposition increases, but then reaches a maximum POC before decreasing across the rest of the range; the critical load is set at the maximum POC since harmful responses are identified as those that reduce POC. "Saddle" responses can either increase or decrease and are dependent of passing a threshold of pH, temp, precip, or deposition; no critical load was set for these responses in this analysis. "U-shaped" responses initially decrease as deposition increases, but then reaches a minimum POC before increasing across the rest of the range; no critical load was set for these responses as additional information is needed to justify the response. 
+
+\  
+
+![Example of four possible herbaceous plant species responses. Deposition (of N or S) increases from left to right on horizontal axis.  Species probability of occurrence is on vertical axis.  Each circle symbol, at peak probability of occurrence, is the critical load.  Sulfur response shapes are limited to decreasing, increasing, or none.](./four_responses.png)
+
+
+**Notes:** If a critical load was calculated to be negative based on the partial derivative equation, then the critical load was set to zero.
+
+**Critical load of N for a decline in POC of individual herbaceous species:** variable; varies by species and pH, temperature, precipitation, and N deposition.
+
+**Critical load of S for a decline in POC of individual herbaceous species:** variable; varies by species and pH, temperature, precipitation, and S deposition.
+
+**Data type:** Point
+
+**Data description:** Vegetation point data are from two different sources. The first source, Clark et al. (2019), contains the point data used to develop the regression curves. The second source, the National Park Service Vegetation Mapping Inventory program, contains species location data.  Covariate data for local pH (gNATSGO), annual precipitation (PRISM), and mean annual temperature (PRISM) were extracted for each point location. In some cases, the geographic distribution of a species occurs beyond the range of environmental conditions used in the CL model.
+
+<!-- **Data type:** Species list  -->
+<!-- **Data description:** Species list data comes from... -->
+
+
+| Species | Response | Count | Max CL | Min CL | Min deposition | Max deposition | Points < CL | Points at CL | Points > CL |
+| --------------- | ------ | ---- | ---- | ---- | ------ | ------ | ---- | ---- |
+| *Carex disperma* | Decreasing | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Juncus effusus* | Decreasing | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Soldiago nemoralis* | Threshold | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pteridium aquilinum* | Threshold | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Poa compressa* | Threshold | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Allium stellatum* | Increasing | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+
+Table: Herbaceous plant species responses (probability of occurrence, POC) to N deposition, from Clark et al. (2019).  The CL equations for each species were used to determine the range of CLs based on local environmental conditions. Exceedances are calculated at each point location relative to 2017-2019 TDep total N deposition.
+
+
+
+| Species | Response | Count | Max CL | Min CL | Min deposition | Max deposition | Points < CL | Points at CL | Points > CL |
+| --------------- | ------ | ---- | ---- | ---- | ------ | ------ | ---- | ---- |
+| *Carex disperma* | Decreasing | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Juncus effusus* | Decreasing | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Soldiago nemoralis* | Threshold | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Pteridium aquilinum* | Threshold | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Poa compressa* | Threshold | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| *Allium stellatum* | Increasing | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+
+Table: Herbaceous plant species responses (probability of occurrence, POC) to S deposition, from Clark et al. (2019).  The CL equations for each species were used to determine the range of CLs based on local environmental conditions. Exceedances are calculated at each point location relative to 2017-2019 TDep total N deposition.
+
 
 \newpage
 
@@ -380,14 +442,9 @@ Table: The exceedance of critical loads of N, and the expected decline in richne
 4.	No critical load was set if there was no trend in response.   
 \  
 
-![Example of four possible tree responses. Nitrogen deposition increases from left to right.  Tree growth or survival on vertical axis.](./four_responses.png)
-<!-- \vspace*{\fill} -->
-<!-- \begin{wrapfigure}{l}{1.8cm} -->
-<!-- \includegraphics{four_responses.png} -->
-<!-- \end{wrapfigure} -->
-<!-- \   -->
+![Example of four possible tree species responses. Deposition (of N or S) increases from left to right on horizontal axis.  Species growth or survival is on vertical axis.  Each circle symbol, at peak probability of occurrence, is the critical load.  Sulfur response shapes are limited to decreasing, increasing, or none.](./four_responses.png)
 
-**Notes:** Mike TODO.  
+**Notes:** Species richness increases from lower levels of deposition before reaching the critical load at maximum richness based on soil pH, precipitation, and temperature.  Increases in richness are expected to be for species that are tolerant of N deposition.  The critical load is set at maximum richness as an estimate of when the increase in tolerant species leads to the loss of other species.  Ecological harm may occur prior to the critical load, but cannot be determined by this dataset.
 
 **Critical load of N for a decline in tree species survival:** single for each tree species, variable in amount and direction of change with a combination of tree size, climate, and competition.  
 
@@ -399,27 +456,23 @@ Table: The exceedance of critical loads of N, and the expected decline in richne
 
 **Data type:** species list  
 
-**Point data description:** Using a list of tree species, alongside the range of N deposition within a land unit, allows for the maximum and minimum level of response to be calculated.  If the minimum deposition exceeds a species' critical load, then the species is at risk at all locations within the land unit, while if only the maximum deposition is in exceedance, then additional analysis needs to be completed to know if the species exists in the area it would be in exceedance.  
+**Species list data description:** Using a list of tree species, alongside the range of N deposition within a land unit, allows for the maximum and minimum level of response to be calculated.  If the minimum deposition exceeds a species' critical load, then the species is at risk at all locations within the land unit, while if only the maximum deposition is in exceedance, then additional analysis needs to be completed to know if the species exists in the area it would be in exceedance.  
 
 **Data type:** surface  
-
-**Cell size:** 30 m  
-
-**Most recent data:** xxxx-xxxx  
 
 **Surface data description:** The list of tree species within a land unit is paired with Wilson et al. (2012) species distribution models at 100-m resolution and TDep modeled deposition.  This information is used to calculate critical loads exceedances, expected response level, and basal area impacted.  
 
 
 | Tree CL type | Critical load (kg N ha^-1^ y^-1^) | 
 | ------------ | -------------- |
-| Tree species with growth CL | 9 | 
-| Minimum growth CL    | 2.6 | 
-| Median growth CL     | 6.9 | 
-| Maximum growth CL    | 20.1 | 
-|  Tree species with survival CL | 11 | 
-| Minimum survival CL  | 3.6 | 
-| Median survival CL   | 6.1 | 
-| Maximum survival CL  | 12.0 | 
+| Tree species with growth CL | `zzz` | 
+| Minimum growth CL    | `zzz` | 
+| Median growth CL     | `zzz` | 
+| Maximum growth CL    | `zzz` | 
+| Tree species with survival CL | `zzz` | 
+| Minimum survival CL  | `zzz` | 
+| Median survival CL   | `zzz` | 
+| Maximum survival CL  | `zzz` | 
 
 Table: Tree species critical loads summary.
 
@@ -455,6 +508,57 @@ Table: Tree species growth and survival responses (based on species list data).
 <!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
 
 
+# Lichen communities
+
+**Citation:** Geiser et al. (2019) and Geiser et al. (2021)
+
+**Description:** Lichen data are in the publicly accessible USFS national lichen database at https://gis.nacse.org/lichenair. Data originate from the USFS Forest Inventory and Analysis (FIA) and Air Resource Management (ARM) programs. The dataset includes 127,001 voucher specimens of 572 species from 2,156 plots in the eastern US and 6,699 plots in the western US for years 1990--2012.  For all species on a plot, field crews assign a rating for ocular abundance on a roughly logarithmic 1--4 scale. Species with abundance ratings of 3 and 4 were considered to provide ecologically substantial contributions to nutrient cycling and to forage, nesting materials, or habitat for forest wildlife and invertebrates.  
+
+**Response:** Five metrics were calculated from lichen survey data:  
+
+1. total species richness -- the count of all of epiphytic macrolichen species at a site
+2. sensitive species richness -- the count of N- and S-sensitive species at a site
+3. abundance of forage lichens -- the sum of abundance ratings for forage lichens at a site, for species with abundance ratings of 3 or 4
+4. abundance of cyanolichens -- the sum of abundance ratings for cyanolichens detected at a site, for species with abundance ratings of 3 or 4
+5. airscores -- community-weighted mean of species’ deposition optima, showing the central tendency of lichens' tolerance to deposition.
+
+For the abundance-based models (items 1--4 in list above), Geiser et al. (2019) used quantile regression at the 90^th^ percentile to separately model the upper bounds of four lichen responses (total species richness, sensitive species richness, forage lichen abundance and cyanolichen abundance) as a function of N or S deposition.  The CL for each lichen response was defined as the point along the prediction response curve resulting in a 20\% decline from its maximum value, at which ecological harm would occur.  Geiser et al. (2019) reported these CLs at 3.5, 3.1, 1.9, and 1.3 kg N ha^-1^ y^-1^ and 6.0, 2.5, 2.6, and 2.3 kg S ha^-1^ y^-1^, respectively.  Each CL is interpreted as the deposition value below which no detrimental change in richness/abundance occurs.
+
+For the composition-based models (item 5 in list above), Geiser et al. (2021) calculated a community composition "airscore" for each plot as the community-weighted mean of species' deposition optima, where optima were calculated as the deposition value at which each species reached its peak detection frequency from 9,000+ nationwide plots.  Therefore, airscores depict air quality as the average central tendency of deposition tolerances among all species in a community, weighted by species' abundances.  The airscores CL is defined as the uppermost N or S deposition value at which the slope of a nonlinear regression surface did not significantly depart from zero, which occurs at 1.5 kg N ha^-1^ y^-1^ and 2.7 kg S ha^-1^ y^-1^, respectively (Geiser et al. 2021).  Each CL is interpreted as the deposition value below which no detrimental change in community compositions occurs.
+
+Deposition data for calculation of lichen CLs are from CMAQ version 5.0.2 (leading up to 2012 for most recent plot visits), and data for estimation of exceedances are from CMAQ version 5.3.2 (most up-to-date data, up to year 2017).
+
+**Notes:**  The geographic distribution of forage lichens and cyanolichens was constrained (masked) by tolerable habitats (must include forested land within suitable climate conditions) further described in Lynch et al. (2020).
+
+**Data type:** point
+
+**Point data description:** Plot data from the USFS Forest Inventory and Analysis (FIA) and Air Resource Management (ARM) programs provide a list of epiphytic macrolichen species per site, later paired with N and S deposition originating from CMAQ version 5.3.2 estimated at plot locations.  
+
+\newpage
+
+| Lichen metric | Element | Critical load | Dep. at 30\% decline | Dep. at 50\% decline | Area < CL | Area at CL | Area > CL | Min response | Max response |
+| -------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Total species richness  | N | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Sensitive richness      | N | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Forage lichen abundance | N | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Cyanolichen abundance   | N | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Community airscores     | N | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Total species richness  | S | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Sensitive richness      | S | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Forage lichen abundance | S | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Cyanolichen abundance   | S | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+| Community airscores     | S | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` | `zzz` |
+Table: Critical loads for a decline in richness/abundance or change in community composition airscores, and the area in exceedance of each CL, based on 2015-2017 CMAQ total N or total S.
+
+
+
+\newpage
+
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+<!-- ####    ####    ####    ####    ####    ####    ####    ####    #### -->
+
+
 # References
 
 \setlength{\parindent}{-0.5in}
@@ -462,28 +566,31 @@ Table: Tree species growth and survival responses (based on species list data).
 \setlength{\parskip}{8pt}
 \noindent
 
-Bowman, W. D., J. Murgel, T. Blett, and E. Porter. 2012. Nitrogen critical loads for alpine vegetation and soils in Rocky Mountain National Park. _Journal of Environmental Management_ 103:165-171.
+Bowman, W.D., J. Murgel, T. Blett, and E. Porter. 2012. Nitrogen critical loads for alpine vegetation and soils in Rocky Mountain National Park. _Journal of Environmental Management_ 103:165-171.
 
-Geiser, L. H., P. R. Nelson, S. Jovan, H. T. Root, and C. M. Clark. 2019. Assessing ecological risks from atmospheric deposition of nitrogen and sulfur to US forests using epiphytic macrolichens. _Diversity_ 11(6):87.
+Clark, C.M., S.M. Simkin, E.B. Allen, W.D. Bowman, J. Belnap, M.L. Brooks, S.L. Collins, L.H. Geiser, F.S. Gilliam, S.E. Jovan, L.H. Pardo, B.K. Schulz, C.J. Stevens, K.N. Suding, H.L. Throop, and D.M. Waller. 2019. Potential vulnerability of 348 herbaceous species to atmospheric deposition of nitrogen and sulfur in the United States. _Nature Plants_ 5:697-705.
 
-Geiser, L.H., H. T. Root, R. J. Smith, S. Jovan, L. St. Clair, and K. L. Dillman. 2021. Lichen-based critical loads for atmospheric deposition in US Forests. _Environmental Pollution_. In review.
+Geiser, L.H., P.R. Nelson, S. Jovan, H.T. Root, and C.M. Clark. 2019. Assessing ecological risks from atmospheric deposition of nitrogen and sulfur to US forests using epiphytic macrolichens. _Diversity_ 11(6):87.
 
-Horn, K. J., R. Q. Thomas, C. M. Clark, L. H. Pardo, M. E. Fenn, G. B. Lawrence, S. S. Perakis, E. A. H. Smithwick, D. Baldwin, S. Braun, A. Nordin, C. H. Perry, J. N. Phelan, P. G. Schaberg, S. B. St. Clair, R. Warby, and S. Watmough. 2018. Growth and survival relationships of 71 tree species with nitrogen and sulfur deposition across the conterminous U.S. _PLoS ONE_ 13:e0205296.
+Geiser, L.H., H. T. Root, R.J. Smith, S. Jovan, L. St. Clair, and K.L. Dillman. 2021. Lichen-based critical loads for deposition of nitrogen and sulfur in US forests _Environmental Pollution_. In press.
 
-Lynch, J. A., J. Phelan, L. H. Pardo, T. C. McDonnell, C. M. Clark, M. D. Bell, L. H. Geiser, and R. J. Smith. 2020. _National Critical Load Database (NCLD) for U.S. Critical Loads of Sulfur and Nitrogen (v. 3.2)._ National Atmospheric Deposition Program, Wisconsin State Laboratory, Madison, WI.
+Horn, K.J., R.Q. Thomas, C.M. Clark, L.H. Pardo, M.E. Fenn, G.B. Lawrence, S.S. Perakis, E.A.H. Smithwick, D. Baldwin, S. Braun, A. Nordin, C.H. Perry, J.N. Phelan, P.G. Schaberg, S.B. St. Clair, R. Warby, and S. Watmough. 2018. Growth and survival relationships of 71 tree species with nitrogen and sulfur deposition across the conterminous US. _PLoS ONE_ 13:e0205296.
 
-McClung, J., M. Bell, and E. Felker-Quinn. 2021. _Extrapolating critical loads of nitrogen for alpine vegetation and assessing exceedance in national parks based on TDep Total N from 2002–2016._ Natural Resource Report NPS/NRSS/ARD/NRR—2021/2240. National Park Service. Fort Collins, Colorado.
+Lynch, J.A., J. Phelan, L.H. Pardo, T.C. McDonnell, C.M. Clark, M.D. Bell, L.H. Geiser, and R.J. Smith. 2020. _National Critical Load Database (NCLD) for U.S. Critical Loads of Sulfur and Nitrogen (v. 3.2)._ National Atmospheric Deposition Program, Wisconsin State Laboratory, Madison, WI.
+
+McClung, J., M.D. Bell, and E. Felker-Quinn. 2021. _Extrapolating critical loads of nitrogen for alpine vegetation and assessing exceedance in national parks based on TDep Total N from 2002–2016._ Natural Resource Report NPS/NRSS/ARD/NRR—2021/2240. National Park Service. Fort Collins, Colorado.
+
+Pardo, L.H., M.E. Fenn, C.L. Goodale, L.H. Geiser, C.T. Driscoll, E.B. Allen, J.S. Baron, R. Bobbink, W.D. Bowman, C.M. Clark, B. Emmett, F.S. Gilliam, T.L. Greaver, S.J. Hall, E.A. Lilleskov, L. Liu, J.A. Lynch, K.J. Nadelhoffer, S.S. Perakis, M.J. Robin-Abbott, J.L. Stoddard, K.C. Weathers, and R.L. Dennis. 2011. Effects of nitrogen deposition and empirical nitrogen critical loads for ecoregions of the United States. _Ecological Applications_ 21:3049-3082.
 
 Schwede, D. B., and G. G. Lear. 2014. A novel hybrid approach for estimating total deposition in the United States. _Atmospheric Environment_ 92:207–220.
 
-Simkin, S. M., E. B. Allen, W. D. Bowman, C. M. Clark, J. Belnap, M. L. Brooks, B. S. Cade, S. L. Collins, L. H. Geiser, F. S. Gilliam, S. E. Jovan, L. H. Pardo, B. K. Schulz, C. J. Stevens, K. N. Suding, H. L. Throop, and D. M. Waller. 2016. Conditional vulnerability of plant diversity to atmospheric nitrogen deposition across the United States. _Proceedings of the National Academy of Sciences_ 113:4086-4091.
+Simkin, S.M., E.B. Allen, W.D. Bowman, C.M. Clark, J. Belnap, M.L. Brooks, B.S. Cade, S.L. Collins, L.H. Geiser, F.S. Gilliam, S.E. Jovan, L.H. Pardo, B.K. Schulz, C.J. Stevens, K.N. Suding, H.L. Throop, and D.M. Waller. 2016. Conditional vulnerability of plant diversity to atmospheric nitrogen deposition across the United States. _Proceedings of the National Academy of Sciences_ 113:4086-4091.
 
-Thomas, R. Q., C. D. Canham, K. C. Weathers, and C. L. Goodale. 2010. Increased tree carbon storage in response to nitrogen deposition in the US. _Nature Geoscience_ 3:13–17.
+Thomas, R.Q., C.D. Canham, K.C. Weathers, and C.L. Goodale. 2010. Increased tree carbon storage in response to nitrogen deposition in the US. _Nature Geoscience_ 3:13–17.
 
-Wilson, B. T., A. J. Lister, and R. I. Riemann. 2012. A nearest-neighbor imputation approach to mapping tree species over large areas using forest inventory plots and moderate resolution raster data. _Forest Ecology and Management_ 271:182–198.
+Williams, J.J., J.A. Lynch, J.E. Saros, and S.G. Labou. 2017. Critical loads of atmospheric N deposition for phytoplankton nutrient limitation shifts in western US mountain lakes. _Ecosphere_ 8:e01955.
 
-
-
+Wilson, B.T., A.J. Lister, and R.I. Riemann. 2012. A nearest-neighbor imputation approach to mapping tree species over large areas using forest inventory plots and moderate resolution raster data. _Forest Ecology and Management_ 271:182–198.
 
 
 <!-- END -->
