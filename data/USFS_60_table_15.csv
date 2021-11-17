@@ -1,0 +1,11 @@
+gen_spp,response,response_type,count,cl,min_dep,max_dep,below_cl,at_cl,above_cl,min_resp,max_resp
+Abies lasiocarpa,growth,incr.,195,14.3207365,3.15494,7.48015,195,0,0,NA,NA
+Picea engelmannii,growth,decr.,194,1.37948991,3.15494,7.48015,0,0,194,-0.149232878,-0.070559242
+Pinus contorta,growth,flat,195,NA,2.61807,6.11921,NA,NA,NA,NA,NA
+Populus tremuloides,growth,thresh.,106,11.14635,2.61807,5.95394,106,0,0,-0.410136971,-0.094167012
+Pseudotsuga menziesii,growth,incr.,121,17.5217519,2.61807,5.95394,121,0,0,NA,NA
+Abies lasiocarpa,survival,flat,195,NA,3.15494,7.48015,NA,NA,NA,NA,NA
+Picea engelmannii,survival,thresh.,194,9.015576,3.15494,7.48015,194,0,0,-0.19069164,-0.006667152
+Pinus contorta,survival,flat,195,NA,2.61807,6.11921,NA,NA,NA,NA,NA
+Populus tremuloides,survival,thresh.,106,4.212561,2.61807,5.95394,75,15,16,-0.010940231,-1.1e-7
+Pseudotsuga menziesii,survival,thresh.,121,1.950303,2.61807,5.95394,0,0,121,-0.035259761,-0.002495501
