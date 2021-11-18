@@ -187,27 +187,22 @@ knitr::kable(tab_03,
 ```{r dep_from_tdep_tab_04}
 f4     <- read.csv('../data/USFS_60_table_4.csv', strip.white=TRUE)
 tab_04 <- data.frame(
-     Type = c('Total N deposition (\\kghayn)', 'Percent wet N deposition (\\%)',
-              'Percent oxidized N (\\%)', 'Total S deposition (\\kghays)', 
-              'Percent wet S deposition (\\%)'), 
-                 round(matrix(as.numeric(f4[,2:16]), ncol=3, nrow=5, byrow=T),1))
-names(tab_04) <- c('Type','Min','Med','Max')
+  Type = c('Total N deposition (\\kghayn)', 'Percent wet N deposition (\\%)',
+           'Percent oxidized N (\\%)', 'Total S deposition (\\kghays)', 
+           'Percent wet S deposition (\\%)'), 
+  round(matrix(as.numeric(f4[,2:16]), ncol=3, nrow=5, byrow=T),1))
+names(tab_04) <- c('Type','Minimum','Median','Maximum')
 knitr::kable(tab_04, 
              format='latex', 
              row.names = F, 
              longtable = T,
              booktabs  = T,
              caption   = 'Estimated deposition minimum, median and maximum for this location, from the 2017-2019 three-year average of total nitrogen or total sulfur modeled by Total Deposition (TDep). Percent wet deposition values are provided for clarity of deposition types.  Units: \\kghay.',
-             escape    = F
-             ) %>% 
-    column_spec(1, width='2.5in') %>% 
-    column_spec(2:4, width='1.0in') %>% 
+             escape    = F) %>% 
+  column_spec(1, width='2.7in') %>% 
+  column_spec(2:4, width='1.0in') %>% 
   kable_styling(latex_options = 'repeat_header')
 ```
-
-<!-- *TODO: map of TDep with land unit boundary* -->
-
-<!-- *TODO: plot trend of Min/Med/Max* -->
 
 
 \newpage
@@ -221,14 +216,14 @@ knitr::kable(tab_04,
 
 **Citation:** Bowman et al. (2012)  
 
-**Description:** Researchers fertilized alpine vegetation with increasing levels of N to determine the level of deposition that changed community compositions.  Plots were located in multiple sites on the eastern edge of the Rocky Mountains of Colorado.  Models calculated a 2.5\% increase in *Carex rupestris* cover per year at 3.0 kg N ha^-1^ y^-1^, and increases in NO~3~ leaching below the rooting zone at 10.0 kg N ha^-1^ y^-1^.  
+**Description:** Researchers fertilized alpine vegetation with increasing levels of N to determine the level of deposition that changed community compositions.  Plots were located in multiple sites on the eastern edge of the Rocky Mountains of Colorado.  Models calculated a 2.5\% increase in *Carex rupestris* cover per year at 3.0 \kghayn, and increases in NO~3~ leaching below the rooting zone at 10.0 \kghayn.  
 
 **Response:** Response curves were not calculated in this analysis.  
 
 **Notes:** This CL is specific to alpine meadow habitats, but is applied more broadly due to lack of additional data and because alpine vegetation occurs in a range of habitats above treeline. The sedge species in the N-fertilization experiment occurs across the Rocky Mountains but not elsewhere. The CL is extrapolated because similar CLs exist in harsh, low-nutrient ecosystems.  
 
-**Critical load of N for an increase in alpine sedge growth:** 3.0 kg N ha^-1^ y^-1^  
-**Critical load of N for an increase in soil N leaching:** 10.0 kg N ha^-1^ y^-1^  
+**Critical load of N for an increase in alpine sedge growth:** 3.0 \kghayn  
+**Critical load of N for an increase in soil N leaching:** 10.0 \kghayn  
 
 **Data type:** surface  
 
@@ -273,38 +268,33 @@ To define the CL, Williams et al. (2017) first selected a biological measure of 
 
 Data from bioassays in 47 mountain lakes (>1200m) within federal land units were used to define biological (RR-N/RR-P = 1) and chemical (NO~3~, DIN, DIN:TP) thresholds above which biomass P limitation exceeds N limitation. Williams et al. (2017) applied this critical load to an independent sample of 385 mountain lakes with NO~3~ data to estimate the frequency it would fail to predict a limitation shift. Lake chemistry data used in analyses were obtained from the Georeferenced Lake Nutrient Chemistry (GLNC) database (Williams and Labou 2017).  
 
-**Response:** Across models, estimated critical loads ranged from 2.8 to 5.2 kg N ha^-1^ y^-1^. The best-performing model, a univariate logistic model with N deposition as the only predictor of NO~3~ threshold exceedance, gave a critical load of 4.1 kg N ha^-1^ y^-1^, and accurately predicted NO~3~ threshold exceedance in 69% of lakes.
+**Response:** Across models, estimated critical loads ranged from 2.8 to 5.2 \kghayn. The best-performing model, a univariate logistic model with N deposition as the only predictor of NO~3~ threshold exceedance, gave a critical load of 4.1 \kghayn, and accurately predicted NO~3~ threshold exceedance in 69% of lakes.
 
-**Notes:** The false-negative rate of the 385 mountain lakes was 13% across the western United States, but was slightly higher (22%) in the Sierras.  Performance analyses suggest a 2.0 kg N ha^-1^ y^-1^ critical load may avoid false negatives entirely.  Critical load of N for shifts from N to P limitation of phytoplankton biomass growth in high elevation lakes was identified at 4.1 kg N ha^-1^ y^-1^.
+**Notes:** The false-negative rate of the 385 mountain lakes was 13% across the western United States, but was slightly higher (22%) in the Sierras.  Performance analyses suggest a 2.0 \kghayn critical load may avoid false negatives entirely.  Critical load of N for shifts from N to P limitation of phytoplankton biomass growth in high elevation lakes was identified at 4.1 \kghayn.
 
 **Data type:** Point
 
-**Data description:** To extrapolate results beyond the lakes identified in the manuscript, we used the USGS National Hydrography Dataset Plus High Resolution to identify lakes in the western United States above 1,200 m and 1--70 ha in size.  Each point was given a critical load of 4.1 kg N ha^-1^ y^-1^, and local N deposition was extracted from the 2017-2019 TDep total N model to calculate exceedances.
+**Data description:** To extrapolate results beyond the lakes identified in the manuscript, we used the USGS National Hydrography Dataset Plus High Resolution to identify lakes in the western United States above 1,200 m and 1--70 ha in size.  Each point was given a critical load of 4.1 \kghayn, and local N deposition was extracted from the 2017-2019 TDep total N model to calculate exceedances.
 
 \  
 
-| Total number of lakes | Number of lakes < CL | Number of lakes at CL | Number of lakes > CL |
-| ---- | ---- | ---- | ---- |
-| `zzz` | `zzz` | `zzz` | `zzz` |
-| `zzz` | `zzz` | `zzz` | `zzz` |  
+\captionsetup{width=5.0in}
 
-Table: Number of high-elevation lakes in exceedance of the 4.1 kg N ha^-1^ y^-1^ critical load, based on 2017-2019 TDep total N.
-
-```{r aquatic_shifts_06}
-# f6     <- read.csv('../data/USFS_60_table_6.csv', strip.white=TRUE)
-# tab_06 <- data.frame(
-#      Type = c('Increased sedge growth', 'Increased NO~3~ leaching'), 
-#                  round(as.matrix(f6[,2:5]),1))
-# # names(tab_06) <- c('Type','Min','Med','Max')
-# knitr::kable(tab_06, 
-#              format='pandoc', 
-#              row.names = F, 
-#              longtable = T,
-#              booktabs  = T,
-#              caption   = 'Alpine area (km^2^) below, at or above critical loads of N for alpine ecosystems.',
-#              escape    = F,
-#              col.names = c('Type' , 'Alpine area (km^2^)' , 'Area < CL (km^2^)' , 'Area at CL (km^2^)' , 'Area > CL (km^2^)')
-#              )
+```{r aquatic_shifts_06, message=FALSE, warning=FALSE}
+f6     <- read.csv('../data/USFS_60_table_6.csv', strip.white=TRUE)
+tab_06 <- data.frame(CL = c('4.1 \\kghayn'), round(as.matrix(f6[,2:5]),0))
+caption <- 'Number of high-elevation lakes in exceedance of the N $\\rightarrow$ P shift critical loads, based on 2017-2019 TDep total N.'
+cnames <- c('Critical load','Total number of lakes' , 'Number of lakes < CL' , 'Number of lakes at CL' , 'Number of lakes > CL')
+knitr::kable(tab_06, 
+             format='latex', 
+             row.names = F, 
+             longtable = T,
+             booktabs  = T,
+             caption   = caption,
+             escape    = F,
+             col.names = cnames
+) %>% 
+  column_spec(2:5, width='0.7in') 
 ```
 
 
@@ -320,13 +310,13 @@ Table: Number of high-elevation lakes in exceedance of the 4.1 kg N ha^-1^ y^-1^
 
 **Description:** Baron et al. summarize the aquatic eutrophication literature 
 
-**Response:** The critical load for nutrient enrichment (increase in lake NO~3~) in western lakes ranged from 1.0--3.0 kg N ha^-1^ y^-1^, reflecting the nearly nonexistent vegetation in complex, snowmelt-dominated watersheds.  The same critical load for northeastern lakes ranged from 3.5--6.0 kg N ha^-1^ y^-1^.
+**Response:** The critical load for nutrient enrichment (increase in lake NO~3~) in western lakes ranged from 1.0--3.0 \kghayn, reflecting the nearly nonexistent vegetation in complex, snowmelt-dominated watersheds.  The same critical load for northeastern lakes ranged from 3.5--6.0 \kghayn.
 
 **Notes:** Keep in mind that the threshold will differ between lakes of strongly vs. weakly vegetated catchments.  For eastern lakes, where ecosystems currently experience elevated N deposition, the ability to attribute biological changes directly to N deposition is confounded by decades of elevated atmospheric N deposition and land-use change.  
 
 **Data type:** Point
 
-**Data description:** To extrapolate results beyond the lakes identified in the manuscript, we used the USGS National Hydrography Dataset Plus High Resolution to identify lakes in the western United States above 1,200 m and 1--70 ha in size.  Each point was given a critical load of 4.1 kg N ha^-1^ y^-1^, and local N deposition was extracted from the 2017-2019 TDep total N model to calculate exceedances.
+**Data description:** To extrapolate results beyond the lakes identified in the manuscript, we used the USGS National Hydrography Dataset Plus High Resolution to identify lakes in the western United States above 1,200 m and 1--70 ha in size.  Each point was given a corresponding critical load, and local N deposition was extracted from the 2017-2019 TDep total N model to calculate exceedances.
 
 \  
 
@@ -344,7 +334,7 @@ knitr::kable(tab_07,
              escape    = F,
              col.names = cnames
 ) %>% 
-  column_spec(2:7, width='0.7in') 
+  column_spec(2:5, width='0.7in') 
 ```
 
 
@@ -386,6 +376,8 @@ knitr::kable(tab_07,
 **Surface data description:** Equations from Simkin et al. (2016) were used to develop a continuous surface of critical loads using PRISM 800-m 30-y mean annual precipitation and temperature, and 30-m gNATSGO DCP soil pH 0-20 cm. Each dataset was clipped to the appropriate ecosystem type using National Land Cover Database (NLCD) data. Open-canopy systems were defined by the 2016 NLCD as grassland, shrubland, and woodland, with alpine areas removed; closed-canopy systems were made up of deciduous forest, evergreen forest, and mixed forest. The deposition level at which species richness declines 10\% is calculated via the max potential richness using pH, precipitation, and temperature data. When a point is in exceedance of the critical load, the expected decline was calculated using TDep Total N data from 2017-2019.  
 
 \newpage
+
+\captionsetup{width=\textwidth}
 
 ```{r herb_point_cl_08}
 if (file.exists('../data/USFS_60_table_8.csv')) {
@@ -839,9 +831,9 @@ if (file.exists('../data/USFS_60_table_16.csv')) {
 4. abundance of cyanolichens -- the sum of abundance ratings for cyanolichens detected at a site, for species with abundance ratings of 3 or 4
 5. airscores -- community-weighted mean of species’ deposition optima, showing the central tendency of lichens' tolerance to deposition.
 
-For the abundance-based models (items 1--4 in list above), Geiser et al. (2019) used quantile regression at the 90^th^ percentile to separately model the upper bounds of four lichen responses (total species richness, sensitive species richness, forage lichen abundance and cyanolichen abundance) as a function of N or S deposition.  The CL for each lichen response was defined as the point along the prediction response curve resulting in a 20\% decline from its maximum value, at which ecological harm would occur.  Geiser et al. (2019) reported these CLs at 3.5, 3.1, 1.9, and 1.3 kg N ha^-1^ y^-1^ and 6.0, 2.5, 2.6, and 2.3 kg S ha^-1^ y^-1^, respectively.  Each CL is interpreted as the deposition value below which no detrimental change in richness/abundance occurs.
+For the abundance-based models (items 1--4 in list above), Geiser et al. (2019) used quantile regression at the 90^th^ percentile to separately model the upper bounds of four lichen responses (total species richness, sensitive species richness, forage lichen abundance and cyanolichen abundance) as a function of N or S deposition.  The CL for each lichen response was defined as the point along the prediction response curve resulting in a 20\% decline from its maximum value, at which ecological harm would occur.  Geiser et al. (2019) reported these CLs at 3.5, 3.1, 1.9, and 1.3 \kghayn and 6.0, 2.5, 2.6, and 2.3 \kghays, respectively.  Each CL is interpreted as the deposition value below which no detrimental change in richness/abundance occurs.
 
-For the composition-based models (item 5 in list above), Geiser et al. (2021) calculated a community composition "airscore" for each plot as the community-weighted mean of species' deposition optima, where optima were calculated as the deposition value at which each species reached its peak detection frequency from 9,000+ nationwide plots.  Therefore, airscores depict air quality as the average central tendency of deposition tolerances among all species in a community, weighted by species' abundances.  The airscores CL is defined as the uppermost N or S deposition value at which the slope of a nonlinear regression surface did not significantly depart from zero, which occurs at 1.5 kg N ha^-1^ y^-1^ and 2.7 kg S ha^-1^ y^-1^, respectively (Geiser et al. 2021).  Each CL is interpreted as the deposition value below which no detrimental change in community compositions occurs.
+For the composition-based models (item 5 in list above), Geiser et al. (2021) calculated a community composition "airscore" for each plot as the community-weighted mean of species' deposition optima, where optima were calculated as the deposition value at which each species reached its peak detection frequency from 9,000+ nationwide plots.  Therefore, airscores depict air quality as the average central tendency of deposition tolerances among all species in a community, weighted by species' abundances.  The airscores CL is defined as the uppermost N or S deposition value at which the slope of a nonlinear regression surface did not significantly depart from zero, which occurs at 1.5 \kghayn and 2.7 \kghays, respectively (Geiser et al. 2021).  Each CL is interpreted as the deposition value below which no detrimental change in community compositions occurs.
 
 Deposition data for calculation of lichen CLs are from CMAQ version 5.0.2 (leading up to 2012 for most recent plot visits), and data for estimation of exceedances are from CMAQ version 5.3.2 (most up-to-date data, up to year 2017).
 
