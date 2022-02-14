@@ -11,7 +11,7 @@ header-includes:
 - \usepackage{tabto}
 - \usepackage{caption}
 params:
-  unit: 'Bridger-Teton National Forest'
+  unit: 'Bridger-Teton National Forest'  # <--- hard-coded for TESTING ONLY
 output:
   pdf_document:
     toc: yes
@@ -32,23 +32,31 @@ toccolor: black
 knitr::opts_chunk$set(echo = FALSE)
 options(knitr.kable.NA = '', knitr.table.format = 'pandoc')
 require(kableExtra)
+`one` <- function(x) formatC(round(as.numeric(x),1),format='f',digits=1)
 ```
 
 ```{r load-csv, include=FALSE}
 # # filename crosswalk
 # cwk <- read.csv('./data/crosswalk.csv', strip.white=TRUE)
-# 
-# # parse filenames
-# 
-# # set filenames
-# 
-# # read CSV files
-# f5  <- read.csv('./data/USFS_60_table_5.csv', strip.white=TRUE)
-# f10 <- read.csv('./data/USFS_60_table_10.csv', strip.white=TRUE)
-# f11 <- read.csv('./data/USFS_60_table_11.csv', strip.white=TRUE)
-# f12 <- read.csv('./data/USFS_60_table_12.csv', strip.white=TRUE)
-# f13 <- read.csv('./data/USFS_60_table_13.csv', strip.white=TRUE)
-# f17 <- read.csv('./data/USFS_60_table_17.csv', strip.white=TRUE)
+
+# prefixes (grab from source dir)
+admin_id <- 'USFS_60'         # hard-coded for TESTING ONLY, USFS_60 = BTNF
+prefix   <- paste0('../data/', admin_id, '_table_')
+
+# filenames vector; only 5 thru 17 are used
+fnm <- paste0(prefix, 1:17, '.csv')
+
+# read CSV files (if they exist), then assign to objects f1,f2,f3,etc
+sapply(seq_along(fnm), 
+       function(i) {
+            if (file.exists(fnm[i])) {
+                 assign(paste0('f',i), read.csv(fnm[i], strip.white=TRUE), envir=.GlobalEnv)
+            } else {
+                 cat(fnm[i], 'file not found\n')
+            }
+         return(NA)
+       }
+)
 ```
 
 ```{r setup-functions, include=FALSE}
@@ -97,9 +105,7 @@ A critical load (CL) is the atmospheric deposition level expected to result in h
 
 \captionsetup{width=9.0cm}
 
-
-```{r tdep_ranges_01}
-f4 <- read.csv('../data/USFS_60_table_4.csv', strip.white=TRUE) # sic
+```{r table_01_tdep_ranges}
 tab_01 <- data.frame(
      Deposition = c('Nitrogen', 'Sulfur'), 
      Minimum = round(c(f4$n_min, f4$s_min),1),
@@ -120,47 +126,84 @@ knitr::kable(tab_01,
 
 \captionsetup{width=8.5cm}
 
+```{r table_02_shortsummary}
+
+# NONE
+
+```
+
 | Ecosystem component | Nitrogen CL | Sulfur CL |
-| -------- | ------ | ------ |
-| Alpine minimum:  | `zzz`  | `zzz`  |
-| Alpine maximum:  | `zzz`  | `zzz`  | 
-| Herb richness minimum: | `zzz`  | `zzz`  |
-| Herb richness maximum: | `zzz`  | `zzz`  |
-| Herb richness 10\% decline: | `zzz`  | `zzz`  | `zzz`  |
-| Herb richness median: | `zzz`  | `zzz`  |
-| Tree growth minimum: | `zzz`  | `zzz`  |
-| Tree growth median: | `zzz`  | `zzz`  |
-| Tree survival minimum: | `zzz`  | `zzz`  |
-| Tree survival median: | `zzz`  | `zzz`  |
-| Lichen minimum: | `zzz`  | `zzz`  |
-| Lichen maximum: | `zzz`  | `zzz`  |
-| Mycorrhizal fungi minimum: | `zzz`  | `zzz`  |
-| Mycorrhizal fungi maximum: | `zzz`  | `zzz`  |
-| Nitrate leaching minimum: | `zzz`  | `zzz`  |
-| Nitrate leaching maximum: | `zzz`  | `zzz`  |
-| Aquatic minimum: | `zzz`  | `zzz`  |
-| Aquatic maximum: | `zzz`  | `zzz`  |
+| -------- | ------: | ------: |
+| Alpine minimum:        | `r if(exists('f5')) { '3.0' } else {''}`  |  --  |
+| Alpine maximum:        | `r if(exists('f5')) { '10.0' } else {''}` |  --  |
+| Aquatic minimum:       | `r '1.0'`  |  --  |
+| Aquatic maximum:       | `r '4.1'`  |  --  |
+| Herb minimum: | `r if(exists('f12')) { one(min(f12$min_cl[f12$min_cl > 0], na.rm=T)) } else {''}`  | `r if(exists('f13')) { one(min(f13$min_cl[f13$min_cl > 0], na.rm=T)) } else {''}`  |
+| Herb median:  | `r if(exists('f12')) { one(median(c(f12$min_cl, f12$max_cl)[c(f12$min_cl, f12$max_cl)>0], na.rm=T)) } else {''}`  | `r if(exists('f13')) { one(median(c(f13$min_cl, f13$max_cl)[c(f13$min_cl, f13$max_cl)>0], na.rm=T)) } else {''}`  |
+| Herb maximum: | `r if(exists('f12')) { one(max(f12$max_cl[f12$max_cl > 0], na.rm=T)) } else {''}`  | `r if(exists('f13')) { one(max(f13$max_cl[f13$max_cl > 0], na.rm=T)) } else {''}`  |
+| Tree growth minimum:   | `r one(   min(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree growth median:    | `r one(median(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree growth maximum:   | `r one(   max(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree survival minimum: | `r one(   min(f15$cl[f15$response == 'survival'],na.rm=T))` |  --  |
+| Tree survival median:  | `r one(median(f15$cl[f15$response == 'survival'],na.rm=T))` |  --  |
+| Tree survival maximum: | `r one(   max(f15$cl[f15$response == 'survival'],na.rm=T))` |  --  |
+| Lichen minimum: | `r '1.3'`  | `r '2.3'`  |
+| Lichen maximum: | `r '3.5'`  | `r '6.0'`  |
 Table: Abbreviated summary of critical loads used to establish conditions and trends by ecosystem component. Units: \kghay.
 
+
 \newpage
+
 
 ## Extended summary of critical loads
 
 \captionsetup{width=\textwidth}
 
-```{r critical_loads_tab_03}
-tab_03 <- read.csv('./tab_02_extended.csv')
-knitr::kable(tab_03, 
-             format='pandoc', 
-             row.names = F, 
-             longtable = T,
-             booktabs  = T,
-             caption   = 'Extended summary: all available information for all ecosystem components.  Units: \\kghay.',
-             escape    = F,
-             col.names = c(
-               'Ecosystem component','Source','Name','Nitrogen CL', 'Sulfur CL')
-)
-```
+| Ecosystem component | Source | Name | Nitrogen CL | Sulfur CL |
+| -------- | -------- | -------- | ------: | ------: |
+| Deposition | Model | Deposition minimum    | `r one(f4$n_min)`  |  `r one(f4$s_min)`  |
+| Deposition | Model | Deposition maximum    | `r one(f4$n_max)`  |  `r one(f4$s_max)`  |
+| Alpine  |  Area | Alpine minimum           | `r if(exists('f5')) { '3.0' } else {''}`  |  --  |
+| Alpine  |  Area | Alpine maximum           | `r if(exists('f5')) { '10.0' } else {''}` |  --  |
+| Aquatic |  Plot | Aquatic eutrophication minimum | `r '1.0'` |  --  |
+| Aquatic |  Plot | Aquatic eutrophication maximum | `r '3.0'` |  --  |
+| Aquatic |  Plot | Aquatic N- to P-limitation, fixed | `r '4.1'` |  --  |       <!-- NEWLY ADDED -->
+| Herb    |  Plot |             Herb richness (open, plot min.) |  `r if(exists('f8')) { one(f8$min[f8$ecosystem == 'open']) } else {'--'}`  |  --  |  <!-- f8 = simkin -->
+| Herb    | Model |          Herb richness (open, surface min.) |  `r if(exists('f10')) { one(f10$min[f10$ecosystem == 'open']) } else {'--'}`  |  --  |  <!-- f10 = surface -->
+| Herb    | Model |  Herb richness (open, surface 10\% decline) |  `r if(exists('f10')) { one(f10$min_10[f10$ecosystem == 'open']) } else {'--'}`  |  --  |  <!-- f10 = surface -->
+| Herb    |  Plot |           Herb richness (closed, plot min.) |  `r if(exists('f8')) { one(f8$min[f8$ecosystem == 'closed']) } else {'--'}`  |  --  |  <!-- f8 = simkin -->
+| Herb    | Model |        Herb richness (closed, surface min.) |  `r if(exists('f10')) { one(f10$min[f10$ecosystem == 'closed']) } else {'--'}`  |  --  |  <!-- f10 = surface -->
+| Herb    | Model | Herb richness (closed, surface 10\% decline)|  `r if(exists('f10')) { one(f10$min_10[f10$ecosystem == 'closed']) } else {'--'}`  |  --  |  <!-- f10 = surface -->
+| Herb    |  Area |                          Pardo herb minimum |  --  |  --  |  <!-- no data? -->
+| Herb    |  Area |                          Pardo herb maximum |  --  |  --  |  <!-- no data? -->
+| Herb    |  Plot |  Herb occurrence minimum | `r if(exists('f12')) { one(min(f12$min_cl[f12$min_cl > 0], na.rm=T)) } else {''}`  | `r if(exists('f13')) { one(min(f13$min_cl[f13$min_cl > 0], na.rm=T)) } else {''}`  |  <!-- f12 = clark-n / f13 = clark-s -->
+| Herb    |  Plot |  Herb occurrence median  | `r if(exists('f12')) { one(median(c(f12$min_cl, f12$max_cl)[c(f12$min_cl, f12$max_cl)>0], na.rm=T)) } else {''}`  | `r if(exists('f13')) { one(median(c(f13$min_cl, f13$max_cl)[c(f13$min_cl, f13$max_cl)>0], na.rm=T)) } else {''}`  |  <!-- f12 = clark-n / f13 = clark-s -->
+| Herb    |  Plot |  Herb occurrence maximum | `r if(exists('f12')) { one(max(f12$max_cl[f12$max_cl > 0], na.rm=T)) } else {''}`  | `r if(exists('f13')) { one(max(f13$max_cl[f13$max_cl > 0], na.rm=T)) } else {''}`  |  <!-- f12 = clark-n / f13 = clark-s -->
+| Forest | Area |  Forest minimum  |  --  |  --  |
+| Forest | Area |  Forest maximum  |  --  |  --  |
+| Tree   | Plot | Tree growth minimum   | `r one(   min(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree   | Plot | Tree growth minimum   | `r one(   min(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree   | Plot | Tree growth median    | `r one(median(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree   | Plot | Tree growth maximum   | `r one(   max(f15$cl[f15$response == 'growth'],na.rm=T))`   |  --  |
+| Tree   | Plot | Tree survival minimum | `r one(   min(f15$cl[f15$response == 'survival'],na.rm=T))` |  --  |
+| Tree   | Plot | Tree survival median  | `r one(median(f15$cl[f15$response == 'survival'],na.rm=T))` |  --  |
+| Tree   | Plot | Tree survival maximum | `r one(   max(f15$cl[f15$response == 'survival'],na.rm=T))` |  --  |
+| Lichen | Model | Lichen minimum | `r '1.3'`  | `r '2.3'`  |
+| Lichen | Model | Lichen maximum | `r '3.5'`  | `r '6.0'`  |
+| Lichen | Model | Lichen total richness             | `r '3.5'`  | `r '6.0'`  |   
+| Lichen | Model | Lichen total richness 30\% decline | `r '5.5'`  | `r '10.1'`  |
+| Lichen | Model | Sensitive lichen richness | `r '3.1'`  | `r '2.5'`  |
+| Lichen | Model | Sensitive lichen richness 30\% decline | `r '4.7'`  | `r '3.6'`  |
+| Lichen | Model | Forage lichen abundance | `r '1.9'`  | `r '2.6'`  |
+| Lichen | Model | Forage lichen abundance 30\% decline | `r '2.8'`  | `r '3.8'`  |
+| Lichen | Model | Cyanolichen abundance | `r '1.3'`  | `r '2.3'`  |
+| Lichen | Model | Cyanolichen abundance 30\% decline | `r '1.9'`  | `r '3.2'`  |
+| Lichen | Model | Lichen community airscores | `r '1.5'`  | `r '2.7'`  |
+| Soil   | Area  | Mycorrhizal fungi minimum |  --  |  --  |
+| Soil   | Area  | Mycorrhizal fungi maximum |  --  |  --  |
+| Soil   | Area  | Nitrate leaching minimum  |  --  |  --  |
+| Soil   | Area  | Nitrate leaching maximum  |  --  |  --  |
+<!-- | Herb | Plot | Herb richness 10\% decline |  --  |  --  |     # f12 = clark-n / f13 = clark-s -->
 
 
 \newpage
@@ -184,8 +227,8 @@ knitr::kable(tab_03,
 
 \  
 
-```{r dep_from_tdep_tab_04}
-f4     <- read.csv('../data/USFS_60_table_4.csv', strip.white=TRUE)
+```{r table_04_tdep}
+# f4     <- read.csv('../data/USFS_60_table_4.csv', strip.white=TRUE)
 tab_04 <- data.frame(
   Type = c('Total N deposition (\\kghayn)', 'Percent wet N deposition (\\%)',
            'Percent oxidized N (\\%)', 'Total S deposition (\\kghays)', 
@@ -223,6 +266,7 @@ knitr::kable(tab_04,
 **Notes:** This CL is specific to alpine meadow habitats, but is applied more broadly due to lack of additional data and because alpine vegetation occurs in a range of habitats above treeline. The sedge species in the N-fertilization experiment occurs across the Rocky Mountains but not elsewhere. The CL is extrapolated because similar CLs exist in harsh, low-nutrient ecosystems.  
 
 **Critical load of N for an increase in alpine sedge growth:** 3.0 \kghayn  
+
 **Critical load of N for an increase in soil N leaching:** 10.0 \kghayn  
 
 **Data type:** surface  
@@ -235,8 +279,7 @@ knitr::kable(tab_04,
 
 \  
 
-```{r alpine_tab_05}
-f5     <- read.csv('../data/USFS_60_table_5.csv', strip.white=TRUE)
+```{r table_05_alpine}
 tab_05 <- data.frame(
      Type = c('Increased sedge growth', 'Increased NO~3~ leaching'), 
                  round(as.matrix(f5[,2:5]),1))
@@ -280,8 +323,8 @@ Data from bioassays in 47 mountain lakes (>1200m) within federal land units were
 
 \captionsetup{width=5.0in}
 
-```{r aquatic_shifts_06, message=FALSE, warning=FALSE}
-f6     <- read.csv('../data/USFS_60_table_6.csv', strip.white=TRUE)
+```{r table_06_aquatic_shifts, message=FALSE, warning=FALSE}
+# f6     <- read.csv('../data/USFS_60_table_6.csv', strip.white=TRUE)
 tab_06 <- data.frame(CL = c('4.1 \\kghayn'), round(as.matrix(f6[,2:5]),0))
 caption <- 'Number of high-elevation lakes in exceedance of the N $\\rightarrow$ P shift critical loads, based on 2017-2019 TDep total N.'
 cnames <- c('Critical load','Total number of lakes' , 'Number of lakes < CL' , 'Number of lakes at CL' , 'Number of lakes > CL')
@@ -294,7 +337,7 @@ knitr::kable(tab_06,
              escape    = F,
              col.names = cnames
 ) %>% 
-  column_spec(2:5, width='0.7in') 
+  column_spec(2:5, width='0.8in') 
 ```
 
 
@@ -320,8 +363,8 @@ knitr::kable(tab_06,
 
 \  
 
-```{r aquatic_eutrophic_07}
-f7     <- read.csv('../data/USFS_60_table_7.csv', strip.white=TRUE)
+```{r table_07_aquatic_eutrophic}
+# f7     <- read.csv('../data/USFS_60_table_7.csv', strip.white=TRUE)
 tab_07 <- data.frame(CL = c('Low (1.0 \\kghay)', 'High (3.0 \\kghay)'), round(as.matrix(f7[,2:5]),0))
 caption <- 'Number of high-elevation lakes in exceedance of the nutrient enrichment critical loads, based on 2017-2019 TDep total N.'
 cnames <- c('Critical load','Total number of lakes' , 'Number of lakes < CL' , 'Number of lakes at CL' , 'Number of lakes > CL')
@@ -334,7 +377,7 @@ knitr::kable(tab_07,
              escape    = F,
              col.names = cnames
 ) %>% 
-  column_spec(2:5, width='0.7in') 
+  column_spec(2:5, width='0.8in') 
 ```
 
 
@@ -379,9 +422,8 @@ knitr::kable(tab_07,
 
 \captionsetup{width=\textwidth}
 
-```{r herb_point_cl_08}
-if (file.exists('../data/USFS_60_table_8.csv')) {
-  f8     <- read.csv('../data/USFS_60_table_8.csv', strip.white=TRUE)
+```{r table_08_herb_point_cl}
+if (exists('f8')) {
   tab_08 <- data.frame(
     Canopy = c('Open', 'Closed'),
     Count = f8[,2],
@@ -407,9 +449,9 @@ knitr::kable(tab_08,
 
 \  
 
-```{r herb_point_exc_09}
-if (file.exists('../data/USFS_60_table_9.csv')) {
-  f9     <- read.csv('../data/USFS_60_table_9.csv', strip.white=TRUE)
+```{r table_09_herb_point_exc}
+if (exists('f9')) {
+  # f9     <- read.csv('../data/USFS_60_table_9.csv', strip.white=TRUE)
   tab_09 <- data.frame(
     Canopy = c('Open', 'Closed'),
     Count = f9[,2],
@@ -434,9 +476,9 @@ knitr::kable(tab_09,
 
 \  
 
-```{r herb_surf_cl_10}
-if (file.exists('../data/USFS_60_table_10.csv')) {
-  f10    <- read.csv('../data/USFS_60_table_10.csv', strip.white=TRUE)
+```{r table_10_herb_surf_cl}
+if (exists('f10')) {
+  # f10    <- read.csv('../data/USFS_60_table_10.csv', strip.white=TRUE)
   tab_10 <- data.frame(
     Canopy = c('Open', 'Closed'),
     round(as.matrix(f10[,4:9]),1))
@@ -460,9 +502,9 @@ knitr::kable(tab_10,
 
 \  
 
-```{r herb_surf_exc_11}
-if (file.exists('../data/USFS_60_table_11.csv')) {
-  f11    <- read.csv('../data/USFS_60_table_11.csv', strip.white=TRUE)
+```{r table_11_herb_surf_exc}
+if (exists('f11')) {
+  # f11    <- read.csv('../data/USFS_60_table_11.csv', strip.white=TRUE)
   tab_11 <- data.frame(
     Canopy      = c('Open', 'Closed'),
     round(as.matrix(f11[,2:7]),1))
@@ -518,9 +560,9 @@ knitr::kable(tab_11,
 
 \  
 
-```{r herb_species_nitrogen_12}
-if (file.exists('../data/USFS_60_table_12.csv')) {
-  f12    <- read.csv('../data/USFS_60_table_12.csv', strip.white=TRUE)
+```{r table_12_herb_species_nitrogen}
+if (exists('f12')) {
+  # f12    <- read.csv('../data/USFS_60_table_12.csv', strip.white=TRUE)
   tab_12 <- data.frame(
     f12[,1:3],
     round(as.matrix(f12[,4:7]),1),
@@ -528,7 +570,7 @@ if (file.exists('../data/USFS_60_table_12.csv')) {
   # some text replacements
   tab_12[grep('saddle',tab_12[,2]),2] <- 'saddle'
   tab_12[grep('thresh',tab_12[,2]),2] <- 'threshold'
-  cnames <- c('Species', 'Response', 'Count', 'Max CL', 'Min CL', 'Min deposition', 'Max deposition', 'Points < CL', 'Points at CL', 'Points > CL')
+  cnames <- c('Species', 'Response', 'Count', 'Max CL', 'Min CL', 'Min dep', 'Max dep', 'Points < CL', 'Points at CL', 'Points > CL')
   caption <- 'Herbaceous plant species responses (probability of occurrence, POC) to \\textbf{nitrogen (N)} deposition, from Clark et al. (2019).  The CL equations for each species were used to determine the range of CLs based on local environmental conditions. Exceedances are calculated at each point location relative to 2017-2019 TDep total N deposition.'
 } else {
   tab_12  <- data.frame(Status = c('No data available'))
@@ -542,21 +584,22 @@ knitr::kable(tab_12,
              booktabs  = T,
              caption   = caption,
              escape    = F,
+             linesep   = '',
              col.names = cnames
 ) %>% 
-    column_spec(1, width='1.1in', italic=TRUE) %>% 
-    column_spec(2, width='0.6in') %>% 
-    column_spec(3, width='0.2in') %>% 
-  column_spec(4:7, width='0.4in') %>% 
-  column_spec(8:10, width='0.4in') %>%
+    column_spec(1, width='2.1in', italic=TRUE) %>% 
+    column_spec(2, width='0.55in') %>% 
+    column_spec(3, width='0.20in') %>% 
+  column_spec(4:7, width='0.30in') %>% 
+  column_spec(8:10, width='0.35in') %>%
   kable_styling(latex_options = 'repeat_header')
 ```
 
-\  
+\newpage  
 
-```{r herb_species_sulfur_13}
-if (file.exists('../data/USFS_60_table_13.csv')) {
-  f13    <- read.csv('../data/USFS_60_table_13.csv', strip.white=TRUE)
+```{r table_13_herb_species_sulfur}
+if (exists('f13')) {
+  # f13    <- read.csv('../data/USFS_60_table_13.csv', strip.white=TRUE)
   tab_13 <- data.frame(
     f13[,1:3],
     round(as.matrix(f13[,4:7]),1),
@@ -564,7 +607,7 @@ if (file.exists('../data/USFS_60_table_13.csv')) {
   # some text replacements
   tab_13[grep('saddle',tab_13[,2]),2] <- 'saddle'
   tab_13[grep('thresh',tab_13[,2]),2] <- 'threshold'
-  cnames <- c('Species', 'Shape', 'Count', 'Max CL', 'Min CL', 'Min deposition', 'Max deposition', 'Points < CL', 'Points at CL', 'Points > CL')
+  cnames <- c('Species', 'Shape', 'Count', 'Max CL', 'Min CL', 'Min dep', 'Max dep', 'Points < CL', 'Points at CL', 'Points > CL')
   caption <- 'Herbaceous plant species responses (probability of occurrence, POC) to \\textbf{sulfur (S)} deposition, from Clark et al. (2019).  The CL equations for each species were used to determine the range of CLs based on local environmental conditions. Exceedances are calculated at each point location relative to 2017-2019 TDep total S deposition.'
 } else {
   tab_13  <- data.frame(Status = c('No data available'))
@@ -578,13 +621,14 @@ knitr::kable(tab_13,
              booktabs  = T,
              caption   = caption,
              escape    = F,
+             linesep   = '',
              col.names = cnames
 ) %>% 
-    column_spec(1, width='1.1in', italic=TRUE) %>% 
-    column_spec(2, width='0.6in') %>% 
-    column_spec(3, width='0.2in') %>% 
-  column_spec(4:7, width='0.4in') %>% 
-  column_spec(8:10, width='0.4in') %>%
+    column_spec(1, width='2.1in', italic=TRUE) %>% 
+    column_spec(2, width='0.55in') %>% 
+    column_spec(3, width='0.20in') %>% 
+  column_spec(4:7, width='0.30in') %>% 
+  column_spec(8:10, width='0.35in') %>%
   kable_styling(latex_options = 'repeat_header')
 
 ```
@@ -632,9 +676,9 @@ knitr::kable(tab_13,
 
 \  
 
-```{r tree_cl_summary_14}
-if (file.exists('../data/USFS_60_table_14.csv')) {
-  f14    <- read.csv('../data/USFS_60_table_14.csv', strip.white=TRUE)
+```{r table_14_tree_cl_summary}
+if (exists('f14')) {
+  # f14    <- read.csv('../data/USFS_60_table_14.csv', strip.white=TRUE)
   f14    <- t(f14)
   f14[c(1,5),]         <- formatC(f14[c(1,5),], format='d')
   f14[c(2,3,4,6,7,8),] <- formatC(round(as.numeric(f14[c(2,3,4,6,7,8),]),1), format='f', digits=1)
@@ -663,10 +707,11 @@ knitr::kable(tab_14,
   column_spec(2, width='5cm')
 ```
 
+\  
 
-```{r tree_cl_point_15}
-if (file.exists('../data/USFS_60_table_15.csv')) {
-  f15    <- read.csv('../data/USFS_60_table_15.csv', strip.white=TRUE)
+```{r table_15_tree_cl_point}
+if (exists('f15')) {
+  # f15    <- read.csv('../data/USFS_60_table_15.csv', strip.white=TRUE)
   tab_15 <- f15[order(f15$gen_spp, f15$response, f15$response_type),]
   tab_15[,c(4,8,9,10)]    <- formatC(as.matrix(tab_15[,c(4,8,9,10)]), format='d')
   tab_15[,c(5,6,7,11,12)] <- formatC(round(as.matrix(tab_15[,c(5,6,7,11,12)]),1), format='f', digits=1)
@@ -693,22 +738,33 @@ knitr::kable(tab_15,
              booktabs  = T,
              caption   = caption,
              escape    = F,
+             linesep   = '',
              col.names = cnames
              ) %>% 
-  column_spec(1, width='0.8in', italic=TRUE) %>% 
+  column_spec(1, width='1.4in', italic=TRUE) %>% 
   column_spec(2:3, width='0.5in') %>% 
   column_spec(4, width='0.25in') %>% 
   column_spec(5:7, width='0.25in') %>% 
-  column_spec(8:10, width='0.25in') %>%
-  column_spec(11:12, width='0.25in') %>%
+  column_spec(8:12, width='0.25in') %>%
   kable_styling(latex_options = 'repeat_header')
+
+# %>% 
+#     column_spec(1, width='2.1in', italic=TRUE) %>% 
+#     column_spec(2, width='0.55in') %>% 
+#     column_spec(3, width='0.20in') %>% 
+#   column_spec(4:7, width='0.30in') %>% 
+#   column_spec(8:10, width='0.35in') %>%
+#   kable_styling(latex_options = 'repeat_header')
+
+
+
 ```
 
 \  
 
-```{r tree_cl_spplist_16}
-if (file.exists('../data/USFS_60_table_16.csv')) {
-  f16    <- read.csv('../data/USFS_60_table_16.csv', strip.white=TRUE)
+```{r table_16_tree_cl_spplist}
+if (exists('f16')) {
+  # f16    <- read.csv('../data/USFS_60_table_16.csv', strip.white=TRUE)
   tab_16 <- f16[order(f16$gen_spp, f16$response, f16$response_type),]
   tab_16[,c(4,8,9,10)]    <- formatC(as.matrix(tab_16[,c(4,8,9,10)]), format='d')
   tab_16[,c(5,6,7,11,12)] <- formatC(round(as.matrix(tab_16[,c(5,6,7,11,12)]),1), format='f', digits=1)
@@ -731,6 +787,7 @@ if (file.exists('../data/USFS_60_table_16.csv')) {
                booktabs  = T,
                caption   = caption,
                escape    = F,
+               linesep   = '',
                col.names = cnames
   ) %>% 
     column_spec(1, width='1.1in', italic=TRUE) %>% 
@@ -740,6 +797,10 @@ if (file.exists('../data/USFS_60_table_16.csv')) {
     column_spec(8:10, width='0.25in') %>%
     column_spec(11:12, width='0.25in') %>%
     kable_styling(latex_options = 'repeat_header')
+  
+  
+
+  
 } else {
   tab_16  <- data.frame(Status = c('No data available'))
   cnames  <- c('Status')
@@ -760,8 +821,8 @@ if (file.exists('../data/USFS_60_table_16.csv')) {
 \  
 
 <!-- TODO: reorder tables? table 14 = tree summary, table 15 = FIA point data, table 16 = unit species list data, table 17 = Wilson raster surface data. -->
-```{r tree_cl_surface_17_MAYBE}
-# if (file.exists('../data/USFS_60_table_16.csv')) {
+```{r table_MAYBE_tree_cl_surface}
+# if (exists('f16')) {
 #   f16    <- read.csv('../data/USFS_60_table_16.csv', strip.white=TRUE)
 #   tab_16 <- f16[order(f16$gen_spp, f16$response, f16$response_type),]
 #   tab_16[,c(4,8,9,10)]    <- formatC(as.matrix(tab_16[,c(4,8,9,10)]), format='d')
@@ -846,9 +907,9 @@ Deposition data for calculation of lichen CLs are from CMAQ version 5.0.2 (leadi
 \newpage
 
 
-```{r lichen_17, message=FALSE, warning=FALSE}
-if (file.exists('../data/USFS_60_table_17.csv')) {
-  f17    <- read.csv('../data/USFS_60_table_17.csv', strip.white=TRUE)
+```{r table_17_lichen, message=FALSE, warning=FALSE}
+if (exists('f17')) {
+  # f17    <- read.csv('../data/USFS_60_table_17.csv', strip.white=TRUE)
   tab_17 <- data.frame(f17)
   tab_17 <- rbind(tab_17[1:4,], 
                   c('Community airscores','N','1.5',rep('NA',7)),
